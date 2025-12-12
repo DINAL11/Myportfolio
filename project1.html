@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Machine Learning for River Forecasting - Dinal Dholiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+            <div class="project-title-nav">ML River Forecasting</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-badge">
+            <i class="fas fa-water"></i>
+            <span>Machine Learning • Hydrology • LSTM</span>
+        </div>
+        <h1 class="hero-title">Machine Learning for River Forecasting</h1>
+        <p class="hero-subtitle">
+            Leveraging LSTM neural networks to predict river stage levels at Avon and Ballantyne 
+            stream gages for up to 48 hours ahead, enhancing flood risk assessment.
+        </p>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Overview -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+                <h2>Project Overview</h2>
+            </div>
+            <p>
+                This project leverages Machine Learning models to predict river stage levels for up to 48 hours ahead. 
+                The goal is to enhance flood risk assessment using real-time data and AI techniques.
+            </p>
+            <p><strong>Duration:</strong> 2022 - 2023 | <strong>Location:</strong> Genesee River Basin</p>
+        </div>
+
+        <!-- Goals -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+                <h2>Project Goals</h2>
+            </div>
+            <ul>
+                <li>Forecast river stages in the Genesee River Basin</li>
+                <li>Improve peak flow prediction for flood management</li>
+                <li>Enable real-time forecasting with dynamic inputs</li>
+                <li>Develop scalable models for other river systems</li>
+            </ul>
+        </div>
+
+        <!-- Data Sources -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-database"></i></div>
+                <h2>Data Sources</h2>
+            </div>
+            <ul>
+                <li>Flow & stage time series from HEC-DSS files</li>
+                <li>USGS streamgage data (Avon & Ballantyne)</li>
+                <li>Precipitation forecasts from NOAA</li>
+                <li>Historical flood event data</li>
+            </ul>
+            <div class="hero-links">
+                <a class="button" href="https://waterdata.usgs.gov/monitoring-location/04230650/" target="_blank">
+                    <i class="fas fa-chart-area"></i>USGS Ballantyne
+                </a>
+                <a class="button" href="https://water.noaa.gov/gauges/avon6" target="_blank">
+                    <i class="fas fa-tint"></i>USGS Avon
+                </a>
+                <a class="button" href="https://www.hec.usace.army.mil/software/hec-dssvue/" target="_blank">
+                    <i class="fas fa-download"></i>HEC-DSSVue
+                </a>
+            </div>
+        </div>
+
+        <!-- ML Model -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-brain"></i></div>
+                <h2>Machine Learning Model</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">LSTM</span>
+                    <span class="stat-label">Primary Model</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">48h</span>
+                    <span class="stat-label">Forecast Horizon</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2+</span>
+                    <span class="stat-label">Gauge Stations</span>
+                </div>
+            </div>
+            <ul>
+                <li>Long Short-Term Memory (LSTM) neural networks</li>
+                <li>Random Forest comparison approach</li>
+                <li>Feature engineering with lagged variables</li>
+                <li>Validation using historical flood events</li>
+            </ul>
+        </div>
+
+        <!-- Technologies -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-tools"></i></div>
+                <h2>Technologies Used</h2>
+            </div>
+            <h3><i class="fas fa-code"></i> Programming & Libraries</h3>
+            <ul>
+                <li><strong>Python</strong> – Core ML development</li>
+                <li><strong>TensorFlow & Keras</strong> – Deep learning frameworks</li>
+                <li><strong>NumPy & Pandas</strong> – Data preprocessing</li>
+                <li><strong>Scikit-learn</strong> – Model evaluation</li>
+            </ul>
+            <h3><i class="fas fa-chart-bar"></i> Visualization</h3>
+            <ul>
+                <li><strong>Matplotlib & Seaborn</strong> – Data visualization</li>
+                <li><strong>Plotly</strong> – Interactive dashboards</li>
+                <li><strong>HEC-DSSVue</strong> – Time-series analysis</li>
+            </ul>
+        </div>
+
+        <!-- Resources -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-folder-open"></i></div>
+                <h2>Project Resources</h2>
+            </div>
+            <div class="hero-links">
+                <a class="button" href="FlowPrediction.txt">
+                    <i class="fas fa-file-alt"></i>Model Configuration
+                </a>
+                <a class="button" href="https://docs.google.com/presentation/d/1JNQ4Mwzxzgd_2xqIiGuecXyoxy4_GTv3VXEc3gOxG8k/edit?usp=sharing" target="_blank">
+                    <i class="fas fa-presentation"></i>Presentation
+                </a>
+                <a class="button" href="Picture1.png">
+                    <i class="fas fa-map"></i>Watershed Map
+                </a>
+                <a class="button" href="Book1.pdf">
+                    <i class="fas fa-file-pdf"></i>Streamgages Data
+                </a>
+                <a class="button" href="Book2.pdf">
+                    <i class="fas fa-file-pdf"></i>Flood Stages
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Dinal Dholiya. All rights reserved.</p>
+        <p><a href="index.html">← Back to Portfolio</a></p>
+    </footer>
+</body>
+</html>

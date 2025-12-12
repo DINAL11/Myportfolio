@@ -1,0 +1,18 @@
+﻿Location,Location Number,Drainage Area,USGS Station Number,USACE DCP ID,DCP Host,Stream,Parameters,Recording Interval,Longitude (d:m:s),Latitude (d:m:s)
+,,(sq. mi),,,,,,,,
+Wellsville,1,288,4221000,CE7EFD40,USGS / USACE,Genesee River,"S, P",30 min,77:57:27W,42:07:20N
+Portageville,2,984,4223000,CE7EEE36,USGS / USACE,Genesee River,"S, P",30 min,78:02:33W,42:34:13N
+Mount Morris Pool,3,"1,080",4224000,CE1FF35A,USACE,Genesee River,"S, P",30 min,77:50:21W,42:46:00N
+Jones Bridge,4,"1,424",4227500,CE7EE0E4,USACE,Genesee River,"S, P",30 min,77:50:21W,42:46:00N
+Avon,5,"1,673",4228500,CE7EB098,USGS / USACE,Genesee River,S,15 min,77:45:27W,42:55:04N
+Ballantyne Bridge,6,"2,210",4230650,CE7EBE4A,USACE,Genesee River,"S, P",30 min,77:40:50W,43:05:32N
+Ford Street Bridge,7,"2,474",4231600,N/A,USGS,Genesee River,"S, V",15 min,77:36:59W,43:08:30N
+"Avenue E, Rochester",8,"2,480",N/A,N/A,RG&E,Genesee River,S,Daily,77:37:40W,43:10:50N
+Dansville,9,88.9,4224774,CE7EC8DA,USACE,Canaseraga Creek,"S, P",30 min,77:42:16W,42:32:08N
+Shakers Crossing,10,335,4227000,N/A,USGS,Canaseraga Creek,"S, V",15 min,77:50:26W,42:44:13N
+Craig Colony,11,68.3,4230380,N/A,GLRI,Keshequa Creek,S,15 min,77:49:43W,42:40:57N
+Warsaw,12,39.5,4230380,CE7EF392,USGS / USACE,Oatka Creek,"S, P",30 min,78:08:16W,42:44:39N
+Garbutt,13,200,4230500,CE7ED57E,USGS / USACE,Oatka Creek,S,15 min,77:47:30W,43:00:36N
+Lakeville,14,72,4227995,N/A,USGS,Conesus Creek,S,15 min,77:42:55W,42:51:14N
+Honeoye Falls,15,196,4229500,CE7EDBAC,USGS / USACE,Honeoye Creek,S,15 min,77:35:20W,42:57:25N
+Churchville,16,130,423100,CE7EC608,USGS / USACE,Black Creek,S,15 min,77:52:57W,43:06:02N
