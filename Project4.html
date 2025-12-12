@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Distributed File Storage System - Dinal Dholiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+            <div class="project-title-nav">Distributed Storage</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-badge">
+            <i class="fas fa-server"></i>
+            <span>Distributed Systems • Java • Spring Boot</span>
+        </div>
+        <h1 class="hero-title">Distributed File Storage System</h1>
+        <p class="hero-subtitle">
+            A robust distributed file storage system providing scalable, fault-tolerant storage across 
+            multiple nodes with consistent hashing, data replication, and REST API interface.
+        </p>
+        <div class="hero-links">
+            <a class="button" href="https://github.com/DINAL11/Distributed-File-Storage-System/tree/main" target="_blank">
+                <i class="fab fa-github"></i>GitHub Repository
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Project Goals -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-bullseye"></i></div>
+                <h2>Project Goals</h2>
+            </div>
+            <ul>
+                <li>Create a highly available distributed storage system</li>
+                <li>Implement efficient file distribution across multiple nodes</li>
+                <li>Ensure data integrity through replication mechanisms</li>
+                <li>Develop a user-friendly API for file operations</li>
+                <li>Build fault tolerance for node failures</li>
+                <li>Design a scalable architecture for future growth</li>
+            </ul>
+        </div>
+
+        <!-- System Architecture -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-sitemap"></i></div>
+                <h2>System Architecture</h2>
+            </div>
+            <p>The system follows a distributed architecture with the following key components:</p>
+            <ul>
+                <li><strong>API Gateway:</strong> Central entry point for all client requests</li>
+                <li><strong>Metadata Service:</strong> Tracks file locations and node status</li>
+                <li><strong>Storage Nodes:</strong> Distributed servers that store file chunks</li>
+                <li><strong>Replication Manager:</strong> Ensures data redundancy across nodes</li>
+                <li><strong>Client Application:</strong> Interface for end-users</li>
+            </ul>
+        </div>
+
+        <!-- Key Features -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-star"></i></div>
+                <h2>Key Features</h2>
+            </div>
+            
+            <h3><i class="fas fa-circle-notch"></i> Consistent Hashing</h3>
+            <ul>
+                <li>Distributes files across nodes based on content hash</li>
+                <li>Minimizes data redistribution when nodes join or leave</li>
+                <li>Ensures balanced load across all storage nodes</li>
+            </ul>
+
+            <h3><i class="fas fa-copy"></i> Data Replication</h3>
+            <ul>
+                <li>Maintains multiple copies of each file across different nodes</li>
+                <li>Configurable replication factor based on data importance</li>
+                <li>Automatic repair mechanism when nodes recover</li>
+            </ul>
+
+            <h3><i class="fas fa-shield-alt"></i> Fault Tolerance</h3>
+            <ul>
+                <li>Graceful handling of node failures without data loss</li>
+                <li>Automatic redistribution of workload to healthy nodes</li>
+                <li>Health monitoring and automatic recovery procedures</li>
+            </ul>
+
+            <h3><i class="fas fa-plug"></i> REST API Interface</h3>
+            <ul>
+                <li>Comprehensive API for file operations (upload, download, delete)</li>
+                <li>File versioning and metadata management</li>
+                <li>Authentication and access control mechanisms</li>
+            </ul>
+        </div>
+
+        <!-- Technical Implementation -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-code"></i></div>
+                <h2>Technical Implementation</h2>
+            </div>
+            
+            <h3><i class="fas fa-server"></i> Backend Development</h3>
+            <ul>
+                <li>Implemented in <strong>Java</strong> with <strong>Spring Boot</strong> framework</li>
+                <li>Used <strong>Apache ZooKeeper</strong> for distributed coordination</li>
+                <li>Implemented custom serialization for efficient data transfer</li>
+                <li>Created asynchronous processing for large file operations</li>
+            </ul>
+
+            <h3><i class="fas fa-desktop"></i> Client Application</h3>
+            <ul>
+                <li>Developed command-line client with intuitive interface</li>
+                <li>Implemented chunking for large file uploads</li>
+                <li>Added retry mechanisms for network failures</li>
+                <li>Created progress tracking for long-running operations</li>
+            </ul>
+
+            <h3><i class="fas fa-vial"></i> Testing Strategy</h3>
+            <ul>
+                <li>Comprehensive unit tests for core components</li>
+                <li>Integration tests for system-wide behavior</li>
+                <li>Chaos testing to simulate node failures</li>
+                <li>Performance testing under various load conditions</li>
+            </ul>
+        </div>
+
+        <!-- Performance Metrics -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-chart-line"></i></div>
+                <h2>Performance Metrics</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">500</span>
+                    <span class="stat-label">MB/s Throughput</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">120ms</span>
+                    <span class="stat-label">Avg Latency</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">98%</span>
+                    <span class="stat-label">Replication Speed</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">5min</span>
+                    <span class="stat-label">Recovery Time</span>
+                </div>
+            </div>
+            <ul>
+                <li>Throughput: Up to 500 MB/s with 10 storage nodes</li>
+                <li>Latency: Average 120ms response time for file retrieval</li>
+                <li>Replication: 98% of nodes synchronized within 2 seconds</li>
+                <li>Recovery: Complete node recovery in under 5 minutes</li>
+                <li>Scalability: Linear performance scaling up to 50 nodes tested</li>
+            </ul>
+        </div>
+
+        <!-- Technologies Used -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-tools"></i></div>
+                <h2>Technologies Used</h2>
+            </div>
+            <ul>
+                <li><strong>Backend:</strong> Java, Spring Boot, Apache ZooKeeper</li>
+                <li><strong>Data Storage:</strong> Custom file system implementation</li>
+                <li><strong>Communication:</strong> gRPC, REST APIs</li>
+                <li><strong>Deployment:</strong> Docker, Kubernetes</li>
+                <li><strong>Monitoring:</strong> Prometheus, Grafana</li>
+                <li><strong>Testing:</strong> JUnit, Mockito, Chaos Monkey</li>
+            </ul>
+        </div>
+
+        <!-- Lessons Learned -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-lightbulb"></i></div>
+                <h2>Lessons Learned</h2>
+            </div>
+            <ul>
+                <li>Importance of proper failure detection mechanisms</li>
+                <li>Benefits of asynchronous operations for high throughput</li>
+                <li>Challenges in maintaining consistency across distributed systems</li>
+                <li>Value of comprehensive logging for troubleshooting</li>
+                <li>Tradeoffs between consistency, availability, and partition tolerance</li>
+            </ul>
+        </div>
+
+        <!-- Future Enhancements -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-rocket"></i></div>
+                <h2>Future Enhancements</h2>
+            </div>
+            <ul>
+                <li>Implementation of erasure coding for storage efficiency</li>
+                <li>Geographic distribution for disaster recovery</li>
+                <li>Addition of data compression algorithms</li>
+                <li>Integration with S3-compatible API</li>
+                <li>Web-based administration interface</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Dinal Dholiya. All rights reserved.</p>
+        <p><a href="index.html">← Back to Portfolio</a></p>
+    </footer>
+</body>
+</html>

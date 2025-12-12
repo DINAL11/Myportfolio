@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Scalable ML with Apache Spark - Dinal Dholiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+<body>
+    <!-- Animated Background -->
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+            <div class="project-title-nav">Spark ML</div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero-section">
+        <div class="hero-badge">
+            <i class="fas fa-fire"></i>
+            <span>Apache Spark • PySpark • Distributed ML</span>
+        </div>
+        <h1 class="hero-title">Scalable Machine Learning with Apache Spark</h1>
+        <p class="hero-subtitle">
+            Utilizing the Apache Spark ecosystem to build scalable machine learning pipelines for large datasets, 
+            demonstrating the full cycle from preprocessing to model evaluation across multiple ML tasks.
+        </p>
+        <div class="hero-links">
+            <a class="button" href="https://drive.google.com/file/d/1v_daj5Vn7lYNVaKg-LVaLSAcnvsFsv15/view?usp=sharing" target="_blank">
+                <i class="fas fa-file-pdf"></i>Apache Spark ML Report
+            </a>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Project Overview -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+                <h2>Project Overview</h2>
+            </div>
+            <p>
+                This project utilizes Apache Spark's distributed computing capabilities to implement scalable machine 
+                learning pipelines. It demonstrates end-to-end data processing, from raw data ingestion through 
+                distributed preprocessing to model training and evaluation on large-scale datasets.
+            </p>
+        </div>
+
+        <!-- Project Highlights -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-star"></i></div>
+                <h2>Project Highlights</h2>
+            </div>
+            <ul>
+                <li>Leveraged Apache Spark for distributed preprocessing and data cleaning with RDDs and DataFrames</li>
+                <li>Implemented <strong>7 ML models</strong> using Spark ML for classification, regression, and clustering</li>
+                <li>Applied <strong>PCA</strong> for dimensionality reduction</li>
+                <li>Handled class imbalance using <strong>SMOTE and undersampling</strong> techniques</li>
+                <li>Conducted detailed performance evaluation using DAG visualizations</li>
+                <li>Optimized Spark jobs for improved execution time and resource utilization</li>
+            </ul>
+        </div>
+
+        <!-- Machine Learning Models -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-brain"></i></div>
+                <h2>Machine Learning Models</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">7</span>
+                    <span class="stat-label">ML Models</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">ML Categories</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">PCA</span>
+                    <span class="stat-label">Dimensionality Reduction</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">SMOTE</span>
+                    <span class="stat-label">Class Balancing</span>
+                </div>
+            </div>
+
+            <h3><i class="fas fa-chart-line"></i> Classification Models</h3>
+            <ul>
+                <li><strong>Logistic Regression:</strong> Linear classification baseline</li>
+                <li><strong>Decision Tree Classifier:</strong> Non-linear decision boundaries</li>
+                <li><strong>Random Forest Classifier:</strong> Ensemble method for robust predictions</li>
+                <li><strong>Support Vector Machine:</strong> Kernel-based classification</li>
+                <li><strong>Gradient-Boosted Trees:</strong> Advanced boosting technique</li>
+            </ul>
+
+            <h3><i class="fas fa-chart-area"></i> Regression Models</h3>
+            <ul>
+                <li><strong>Linear Regression:</strong> Continuous value prediction</li>
+            </ul>
+
+            <h3><i class="fas fa-project-diagram"></i> Clustering Models</h3>
+            <ul>
+                <li><strong>KMeans Clustering:</strong> Unsupervised pattern discovery</li>
+            </ul>
+        </div>
+
+        <!-- Technical Implementation -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-code"></i></div>
+                <h2>Technical Implementation</h2>
+            </div>
+            
+            <h3><i class="fas fa-fire"></i> Apache Spark Operations</h3>
+            <ul>
+                <li><strong>RDD Operations:</strong> Low-level distributed data processing</li>
+                <li><strong>DataFrame API:</strong> High-level structured data manipulation</li>
+                <li><strong>Spark SQL:</strong> SQL queries on distributed data</li>
+                <li><strong>Spark ML:</strong> Scalable machine learning library</li>
+                <li>Pipeline creation for automated workflows</li>
+            </ul>
+
+            <h3><i class="fas fa-database"></i> Data Processing</h3>
+            <ul>
+                <li>Distributed data cleaning and transformation</li>
+                <li>Feature engineering at scale</li>
+                <li>PCA for dimensionality reduction</li>
+                <li>SMOTE and undersampling for imbalanced datasets</li>
+                <li>Train-test splitting with stratification</li>
+            </ul>
+
+            <h3><i class="fas fa-tachometer-alt"></i> Performance Optimization</h3>
+            <ul>
+                <li>DAG (Directed Acyclic Graph) analysis and optimization</li>
+                <li>Partition tuning for optimal parallelism</li>
+                <li>Caching strategies for iterative algorithms</li>
+                <li>Broadcast variables for efficient data sharing</li>
+            </ul>
+        </div>
+
+        <!-- Performance Analysis -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-chart-bar"></i></div>
+                <h2>Performance Analysis</h2>
+            </div>
+            <p>Execution plans were visualized using Spark DAGs, and models were evaluated based on:</p>
+            <ul>
+                <li><strong>Accuracy:</strong> Overall correctness of predictions</li>
+                <li><strong>Precision & Recall:</strong> Class-specific performance metrics</li>
+                <li><strong>F1 Score:</strong> Harmonic mean of precision and recall</li>
+                <li><strong>Execution Time:</strong> Training and inference performance</li>
+                <li><strong>Resource Utilization:</strong> CPU and memory efficiency</li>
+            </ul>
+        </div>
+
+        <!-- Technologies Used -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-tools"></i></div>
+                <h2>Technologies Used</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">Spark</span>
+                    <span class="stat-label">Processing Engine</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">PySpark</span>
+                    <span class="stat-label">Python API</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">SQL</span>
+                    <span class="stat-label">Query Language</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">ML Lib</span>
+                    <span class="stat-label">ML Framework</span>
+                </div>
+            </div>
+            <ul>
+                <li><strong>Apache Spark:</strong> Distributed computing framework</li>
+                <li><strong>PySpark:</strong> Python API for Spark</li>
+                <li><strong>Spark ML:</strong> Machine learning library</li>
+                <li><strong>Python:</strong> Programming language</li>
+                <li><strong>SQL:</strong> Data querying and manipulation</li>
+                <li><strong>Matplotlib & Seaborn:</strong> Visualization libraries</li>
+                <li><strong>Statsmodels:</strong> Statistical analysis</li>
+            </ul>
+        </div>
+
+        <!-- Key Achievements -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-trophy"></i></div>
+                <h2>Key Achievements</h2>
+            </div>
+            <ul>
+                <li>Successfully implemented 7 different ML models on distributed data</li>
+                <li>Achieved 85%+ accuracy on classification tasks</li>
+                <li>Reduced processing time by 70% using Spark optimizations</li>
+                <li>Handled class imbalance effectively with SMOTE techniques</li>
+                <li>Created reusable Spark ML pipelines for future projects</li>
+            </ul>
+        </div>
+
+        <!-- Lessons Learned -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-lightbulb"></i></div>
+                <h2>Lessons Learned</h2>
+            </div>
+            <ul>
+                <li>Importance of partition tuning for Spark performance</li>
+                <li>Benefits of DAG analysis for optimization</li>
+                <li>Tradeoffs between RDD and DataFrame APIs</li>
+                <li>Effective strategies for handling skewed data distributions</li>
+                <li>Value of caching in iterative ML algorithms</li>
+            </ul>
+        </div>
+
+        <!-- Future Enhancements -->
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-rocket"></i></div>
+                <h2>Future Enhancements</h2>
+            </div>
+            <ul>
+                <li>Integration with Spark Streaming for real-time ML</li>
+                <li>Deep learning with TensorFlow on Spark</li>
+                <li>Automated hyperparameter tuning at scale</li>
+                <li>Model serving infrastructure with MLflow</li>
+                <li>Cloud deployment on AWS EMR or Databricks</li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Dinal Dholiya. All rights reserved.</p>
+        <p><a href="index.html">← Back to Portfolio</a></p>
+    </footer>
+</body>
+</html>

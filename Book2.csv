@@ -1,0 +1,18 @@
+﻿Location Number,Gage,Datum of Gage,,NWS’S Action Stage,Corps’ Alert Stage,NWS’s Flood Stage,Corps’ Minor Flood Stage,NWS’s Moderate Stage,NWS’s Major Flood Stage,Corps’ Major Flood Stage,Record Stage
+,,NAVD 1988,NGVD 1929,,,,,,,,
+1,Wellsville,"1,469.51","1,470.00",9,16,11,11,14,17,17,20.7
+2,Portageville,"1,079.72","1,080.00",17,25,19,25,25,29,29,35.25
+3,Mount Morris Pool,N/A,NGVD 1929,720,N/A,760,N/A,760,760,N/A,755
+4,Jones Bridge,539.57,540.12,N/A,N/A,N/A,19.6,N/A,N/A,N/A,25.8
+5,Avon,499.56,500.11,30,34,33,33.6,37,40,35.2,40.67
+6,Ballantyne Bridge,499.33,500,N/A,19,N/A,19,N/A,N/A,22,20.8
+7,Ford Street Bridge,498.4,498.98,N/A,15,N/A,15,N/A,N/A,17,15.89
+8,"Avenue E, Rochester",244.24’ above “OTHER”,,13,N/A,15,N/A,19,24,N/A,24.5
+9,Dansville,715.13,715.6,N/A,N/A,N/A,N/A,N/A,N/A,N/A,8.5
+10,Shakers Crossing,544.97,545.52,N/A,N/A,N/A,N/A,N/A,N/A,N/A,13.86
+11,Craig Colony,580,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,6.69
+12,Warsaw,986.66,987.15,N/A,N/A,N/A,N/A,N/A,N/A,N/A,9.9
+13,Garbutt,560.15,560.86,5,9,6,9,7,8,12.5,8.64
+14,Lakeville,806.35,N/A,N/A,N/A,N/A,N/A,N/A,N/A,N/A,5.58
+15,Honeoye Falls,607.49,608,6,N/A,6.5,N/A,7,8,N/A,8.42
+16,Churchville,551.3,551.88,5,8.5,6,7.7,7,8,9.4,9.44
