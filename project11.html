@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trader Data Visualization Dashboard - Dinal Dholiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+            <div class="project-title-nav">Trader Dashboard</div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-badge">
+            <i class="fas fa-chart-line"></i>
+            <span>Market Data • React • TypeScript</span>
+        </div>
+        <h1 class="hero-title">Trader Data Visualization Dashboard</h1>
+        <p class="hero-subtitle">
+            A market data dashboard built through the J.P. Morgan Forage software engineering simulation to
+            process streaming stock quotes, visualize price movements, and flag ratio deviations in real time.
+        </p>
+        <div class="hero-links">
+            <a class="button" href="https://github.com/DINAL11/forage-jpmc-swe-task-1" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>Task 1 Repo
+            </a>
+            <a class="button" href="https://github.com/DINAL11/forage-jpmc-swe-task-2" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>Task 2 Repo
+            </a>
+            <a class="button" href="https://github.com/DINAL11/forage-jpmc-swe-task-3" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>Task 3 Repo
+            </a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+                <h2>Project Overview</h2>
+            </div>
+            <p>
+                This project focused on building a trader-facing visualization workflow from raw quote ingestion
+                to front-end charting. Across three repositories, I worked through the full path of consuming live
+                quote data, structuring it for analysis, and rendering a dashboard that surfaces pricing trends and
+                alert conditions for a pair of stocks.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-star"></i></div>
+                <h2>Project Highlights</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">3</span>
+                    <span class="stat-label">Linked Tasks</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">500</span>
+                    <span class="stat-label">Quote Requests</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Tracked Stocks</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">5%</span>
+                    <span class="stat-label">Alert Threshold</span>
+                </div>
+            </div>
+            <ul>
+                <li>Parsed streaming quote data and extracted bid, ask, and price values with Python.</li>
+                <li>Built a React and TypeScript dashboard using the Perspective visualization library.</li>
+                <li>Calculated stock price ratios and highlighted alert conditions when the spread moved out of range.</li>
+                <li>Organized the work as progressive deliverables across data processing, front-end charting, and alert logic.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-stream"></i></div>
+                <h2>Implementation Across Tasks</h2>
+            </div>
+
+            <h3><i class="fas fa-database"></i> Task 1: Market Data Processing</h3>
+            <ul>
+                <li>Consumed quote responses from a local pricing server.</li>
+                <li>Extracted stock symbol, bid price, ask price, and computed display price values.</li>
+                <li>Added unit-test coverage around quote parsing behavior and pricing edge cases.</li>
+            </ul>
+
+            <h3><i class="fas fa-chart-area"></i> Task 2: Visualization Layer</h3>
+            <ul>
+                <li>Integrated Perspective into a React application for interactive chart rendering.</li>
+                <li>Configured timestamp-based visualization of top bid and ask values.</li>
+                <li>Streamed server responses into the dashboard to keep the graph updated with incoming data.</li>
+            </ul>
+
+            <h3><i class="fas fa-bell"></i> Task 3: Ratio Monitoring & Alerts</h3>
+            <ul>
+                <li>Computed normalized price ratios between two tracked stocks.</li>
+                <li>Introduced upper and lower bounds to detect outlier trading conditions.</li>
+                <li>Extended the chart schema to visualize ratio movement and trigger-alert signals together.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-desktop"></i></div>
+                <h2>Dashboard Features</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-wave-square"></i></div>
+                    <h4>Live Quote Feed</h4>
+                    <p>Streams quote updates from the pricing server into the UI.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-chart-line"></i></div>
+                    <h4>Time-Series Charting</h4>
+                    <p>Plots price and ratio movement over time for quick trend analysis.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-code-branch"></i></div>
+                    <h4>Ratio Analysis</h4>
+                    <p>Compares paired stocks to identify divergence from expected behavior.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-triangle-exclamation"></i></div>
+                    <h4>Threshold Alerts</h4>
+                    <p>Flags potential trading opportunities when the ratio leaves the safe band.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-tools"></i></div>
+                <h2>Technologies Used</h2>
+            </div>
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <span class="stat-number">Python</span>
+                    <span class="stat-label">Data Logic</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">React</span>
+                    <span class="stat-label">Frontend</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">TS</span>
+                    <span class="stat-label">Type Safety</span>
+                </div>
+                <div class="stat-card">
+                    <span class="stat-number">Git</span>
+                    <span class="stat-label">Version Control</span>
+                </div>
+            </div>
+            <ul>
+                <li><strong>Frontend:</strong> React, TypeScript, CSS</li>
+                <li><strong>Visualization:</strong> FINOS Perspective</li>
+                <li><strong>Backend/Data Feed:</strong> Python, local quote server, CSV-based test data</li>
+                <li><strong>Testing:</strong> Python unit tests</li>
+                <li><strong>Workflow:</strong> GitHub repositories split by milestone deliverables</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-lightbulb"></i></div>
+                <h2>What This Project Demonstrates</h2>
+            </div>
+            <ul>
+                <li>Ability to move from back-end data parsing to front-end visualization in one workflow.</li>
+                <li>Experience translating raw financial data into signals traders can interpret quickly.</li>
+                <li>Comfort working across Python and modern JavaScript/TypeScript tooling.</li>
+                <li>A practical approach to monitoring market anomalies through simple, explainable thresholds.</li>
+            </ul>
+        </div>
+    </div>
+</body>
+</html>
