@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Word Cloud Visualization - Dinal Dholiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+            <div class="project-title-nav">3D Word Cloud</div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-badge">
+            <i class="fas fa-cube"></i>
+            <span>NLP • Three.js • FastAPI • React</span>
+        </div>
+        <h1 class="hero-title">3D Word Cloud Visualization</h1>
+        <p class="hero-subtitle">
+            An interactive web app that analyzes article content in real time and transforms the most important
+            topics into an immersive 3D word cloud for visual exploration.
+        </p>
+        <div class="hero-links">
+            <a class="button" href="https://github.com/DINAL11/3D-Word-Cloud-Dinal" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>GitHub
+            </a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+                <h2>Project Overview</h2>
+            </div>
+            <p>
+                This project takes a news article URL, scrapes the content, extracts key terms using NLP
+                techniques, and turns the result into a responsive 3D visualization. The experience combines
+                backend text analysis with a frontend that is intentionally visual, interactive, and exploratory.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-diagram-project"></i></div>
+                <h2>How It Works</h2>
+            </div>
+            <ul>
+                <li>Accepts a news article URL as input from the user interface.</li>
+                <li>Fetches and extracts the article content on the backend.</li>
+                <li>Processes the text using tokenization, stop-word removal, and TF-IDF.</li>
+                <li>Maps topic importance to spatial position, size, and color in a 3D scene.</li>
+                <li>Lets users rotate, zoom, and hover to explore the output interactively.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-star"></i></div>
+                <h2>Highlights</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-brain"></i></div>
+                    <h4>NLP Pipeline</h4>
+                    <p>Uses TF-IDF and text preprocessing to surface meaningful article keywords.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-globe"></i></div>
+                    <h4>URL-Based Analysis</h4>
+                    <p>Processes real article links instead of relying on static datasets.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-cubes"></i></div>
+                    <h4>3D Visualization</h4>
+                    <p>Uses React Three Fiber and Three.js for an immersive topic layout.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-bolt"></i></div>
+                    <h4>Fast Feedback</h4>
+                    <p>Designed for real-time interaction rather than offline-only analysis.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-tools"></i></div>
+                <h2>Technologies Used</h2>
+            </div>
+            <ul>
+                <li><strong>Frontend:</strong> React 18, TypeScript, Three.js, React Three Fiber, Vite</li>
+                <li><strong>Backend:</strong> FastAPI, BeautifulSoup4, scikit-learn, NLTK</li>
+                <li><strong>Deployment:</strong> Vercel frontend and Render backend workflow</li>
+                <li><strong>User Experience:</strong> Rotatable, zoomable, hover-based visual exploration</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dinal Dholiya. All rights reserved.</p>
+        <p><a href="index.html">← Back to Portfolio</a></p>
+    </footer>
+</body>
+</html>

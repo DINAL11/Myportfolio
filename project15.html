@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpsPulse Dashboard - Dinal Dholiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+            <div class="project-title-nav">OpsPulse</div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-badge">
+            <i class="fas fa-chart-pie"></i>
+            <span>Dashboard • React • Flask • SQLite</span>
+        </div>
+        <h1 class="hero-title">OpsPulse Portfolio Tracking Dashboard</h1>
+        <p class="hero-subtitle">
+            An internal operations dashboard for monitoring positions, trade activity, daily reporting,
+            and exposure changes through a lightweight full-stack architecture.
+        </p>
+        <div class="hero-links">
+            <a class="button" href="https://github.com/DINAL11/Opspulse" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>GitHub
+            </a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+                <h2>Project Overview</h2>
+            </div>
+            <p>
+                OpsPulse was built as a practical, read-only internal tool for tracking portfolio positions,
+                trade history, and daily reports. The project emphasizes clear architecture, reliable data flows,
+                and a simple user experience for operations teams rather than flashy UI for end users.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-list-check"></i></div>
+                <h2>Core Capabilities</h2>
+            </div>
+            <ul>
+                <li>View current portfolio positions with prices, values, and P&amp;L context.</li>
+                <li>Browse chronological trade activity logs with filters and pagination support.</li>
+                <li>Generate daily reports and export them for operational workflows.</li>
+                <li>Track price changes through background update scripts and snapshot history.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-database"></i></div>
+                <h2>System Design</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-table"></i></div>
+                    <h4>SQLite Storage</h4>
+                    <p>Simple local database design for assets, trades, and historical snapshots.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-code"></i></div>
+                    <h4>Flask API</h4>
+                    <p>REST endpoints for portfolio, trades, daily reporting, and health checks.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-desktop"></i></div>
+                    <h4>React Frontend</h4>
+                    <p>Responsive UI for internal monitoring and quick inspection of portfolio activity.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-clock-rotate-left"></i></div>
+                    <h4>Background Jobs</h4>
+                    <p>Price fetcher scripts keep current values and exposure monitoring updated.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-tools"></i></div>
+                <h2>Technologies Used</h2>
+            </div>
+            <ul>
+                <li><strong>Frontend:</strong> React 19, TypeScript, Vite</li>
+                <li><strong>Backend:</strong> Flask, SQLAlchemy, Python scripts</li>
+                <li><strong>Database:</strong> SQLite for lightweight local setup</li>
+                <li><strong>Architecture:</strong> REST API, append-only trade logs, snapshot-based monitoring</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dinal Dholiya. All rights reserved.</p>
+        <p><a href="index.html">← Back to Portfolio</a></p>
+    </footer>
+</body>
+</html>
