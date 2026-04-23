@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Enclave Firewall Manager - Dinal Dholiya</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project-styles.css">
+</head>
+<body>
+    <div class="animated-bg">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <nav class="nav-header">
+        <div class="nav-container">
+            <a href="index.html" class="back-btn">
+                <i class="fas fa-arrow-left"></i>
+                <span>Back to Portfolio</span>
+            </a>
+            <div class="project-title-nav">Enclave Firewall</div>
+        </div>
+    </nav>
+
+    <section class="hero-section">
+        <div class="hero-badge">
+            <i class="fas fa-shield-halved"></i>
+            <span>Go • Linux Networking • Docker • nftables</span>
+        </div>
+        <h1 class="hero-title">Enclave Firewall Manager</h1>
+        <p class="hero-subtitle">
+            A Go-based firewall management tool that syncs rules from an endpoint, applies them to nftables,
+            and validates ingress and egress behavior through a containerized test environment.
+        </p>
+        <div class="hero-links">
+            <a class="button" href="https://github.com/DINAL11/dinal-efw-challenge" target="_blank" rel="noopener noreferrer">
+                <i class="fab fa-github"></i>GitHub
+            </a>
+        </div>
+    </section>
+
+    <div class="container">
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-info-circle"></i></div>
+                <h2>Project Overview</h2>
+            </div>
+            <p>
+                This project centers on building a command-line tool for loading firewall rules from a remote
+                endpoint and applying them locally through nftables. It demonstrates lower-level systems work,
+                containerized debugging, and practical validation of network-policy behavior.
+            </p>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-terminal"></i></div>
+                <h2>Key Responsibilities</h2>
+            </div>
+            <ul>
+                <li>Implemented sync and status command flows for firewall rule management.</li>
+                <li>Used Go to interact with rule configuration and local nftables behavior.</li>
+                <li>Set up a Docker Compose environment to simulate traffic between containers.</li>
+                <li>Validated blocked and allowed network flows using netcat-based testing.</li>
+            </ul>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <div class="section-icon"><i class="fas fa-screwdriver-wrench"></i></div>
+                <h2>Technical Highlights</h2>
+            </div>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-repeat"></i></div>
+                    <h4>Rule Synchronization</h4>
+                    <p>Pulls firewall definitions from a JSON endpoint and applies them locally.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-network-wired"></i></div>
+                    <h4>nftables Integration</h4>
+                    <p>Works directly with Linux firewall rules instead of abstracting the system away.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-boxes-stacked"></i></div>
+                    <h4>Containerized Testing</h4>
+                    <p>Uses multiple containers to simulate cross-container traffic and validate policies.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fas fa-list"></i></div>
+                    <h4>Status Reporting</h4>
+                    <p>Surfaces human-readable status output for currently applied firewall rules.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Dinal Dholiya. All rights reserved.</p>
+        <p><a href="index.html">← Back to Portfolio</a></p>
+    </footer>
+</body>
+</html>
