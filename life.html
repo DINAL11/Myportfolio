@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Life — Dinal Dholiya</title>
+    <meta name="description" content="Hobbies, hiking, and life outside of work.">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="page-inner page-life" data-page="life">
+    <div class="animated-bg calm-bg" aria-hidden="true">
+        <div class="gradient-orb orb-1"></div>
+        <div class="gradient-orb orb-2"></div>
+    </div>
+
+    <div id="site-header"></div>
+
+    <main class="page-main">
+        <header class="page-hero reveal">
+            <p class="page-eyebrow">Life</p>
+            <h1 class="page-title">Away from the screen</h1>
+            <p class="page-lead">
+                A place for the personal side — trails, food, sports, and snapshots from everyday life.
+                I'm adding more here over time.
+            </p>
+        </header>
+
+        <section class="life-section page-section reveal">
+            <div class="container">
+                <div class="life-grid">
+                    <article class="life-card life-card-featured">
+                        <div class="life-card-media life-placeholder" data-life-slot="hiking-hero">
+                            <span class="life-placeholder-icon" aria-hidden="true">🏔️</span>
+                            <p class="life-placeholder-text">Your favorite hiking photo can go here</p>
+                        </div>
+                        <div class="life-card-body">
+                            <h2>Hiking</h2>
+                            <p>
+                                I love being outdoors — long trails, new views, and the quiet that comes with them.
+                                This section will grow with photos and notes from hikes.
+                            </p>
+                        </div>
+                    </article>
+
+                    <article class="life-card">
+                        <div class="life-card-media life-placeholder" data-life-slot="hobby-1">
+                            <span class="life-placeholder-icon" aria-hidden="true">📷</span>
+                        </div>
+                        <div class="life-card-body">
+                            <h3>Exploring</h3>
+                            <p>New places, good food, and small adventures — add a gallery when you're ready.</p>
+                        </div>
+                    </article>
+
+                    <article class="life-card">
+                        <div class="life-card-media life-placeholder" data-life-slot="hobby-2">
+                            <span class="life-placeholder-icon" aria-hidden="true">🏉</span>
+                        </div>
+                        <div class="life-card-body">
+                            <h3>Sports</h3>
+                            <p>Roll ball, rugby, and staying active — photos and stories can live here later.</p>
+                        </div>
+                    </article>
+
+                    <article class="life-card life-card-wide">
+                        <div class="life-card-body">
+                            <h3>More coming soon</h3>
+                            <p>
+                                To add a photo later: drop an image in this folder and replace a
+                                <code>life-placeholder</code> block with an <code>&lt;img src="your-photo.jpg" alt="..."&gt;</code>.
+                                I'm happy to help wire that up when you have pictures ready.
+                            </p>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div id="site-footer"></div>
+    <script src="js/site.js" defer></script>
+</body>
+</html>
