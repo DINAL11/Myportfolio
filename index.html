@@ -3,59 +3,134 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinal Dholiya</title>
-    <meta name="description" content="Personal site of Dinal Dholiya — software engineer, builder, and explorer.">
+    <title>Dinal Dholiya — Software Engineer</title>
+    <meta name="description" content="Portfolio of Dinal Dholiya — software engineer, builder, and explorer.">
     <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<body class="page-home" data-page="home">
-    <div class="animated-bg calm-bg" aria-hidden="true">
+<body class="page-home spatial-theme" data-page="home">
+    <div class="spatial-bg" aria-hidden="true">
+        <canvas id="starfield" class="starfield-canvas"></canvas>
         <div class="gradient-orb orb-1"></div>
         <div class="gradient-orb orb-2"></div>
+        <div class="gradient-orb orb-3"></div>
+        <div class="spatial-grid"></div>
     </div>
 
     <div id="site-header"></div>
 
-    <main class="page-main home-main">
-        <section class="home-hero reveal">
-            <p class="home-greeting">Hi, I'm</p>
-            <h1 class="home-name">Dinal Dholiya</h1>
-            <p class="home-role">Software engineer · Chicago</p>
-            <p class="home-intro">
-                I build thoughtful software and enjoy figuring things out along the way.
-                When I'm not at the keyboard, you'll often find me on a hiking trail or exploring somewhere new.
-            </p>
-            <div class="home-actions">
-                <a href="work.html" class="btn btn-primary">See my work</a>
-                <a href="contact.html" class="btn btn-secondary">Get in touch</a>
+    <main class="page-main home-spatial">
+        <div class="home-layout reveal">
+            <div class="home-copy">
+                <p class="home-eyebrow">Software engineer · Chicago</p>
+                <h1 class="home-headline">
+                    Building thoughtful<br>
+                    <span class="text-gradient">experiences.</span>
+                </h1>
+                <p class="home-lead">
+                    I craft software that works well and feels intentional — from full-stack apps
+                    to data and research projects. Off the clock: hiking, food, and staying curious.
+                </p>
+                <div class="home-actions">
+                    <a href="work.html" class="btn btn-primary btn-glow">
+                        <span>Explore work</span>
+                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
+                    </a>
+                    <a href="life.html" class="btn btn-secondary">See life page</a>
+                </div>
+                <p class="home-scroll-hint">
+                    <span class="scroll-line"></span>
+                    Scroll to explore
+                </p>
             </div>
-        </section>
 
-        <section class="home-explore reveal" aria-label="Explore the site">
-            <h2 class="home-explore-title">Explore</h2>
-            <div class="home-cards">
-                <a href="about.html" class="home-card">
-                    <span class="home-card-label">About</span>
-                    <span class="home-card-desc">Who I am and what I care about</span>
-                </a>
-                <a href="work.html" class="home-card">
-                    <span class="home-card-label">Work</span>
-                    <span class="home-card-desc">Projects and case studies</span>
-                </a>
-                <a href="life.html" class="home-card">
-                    <span class="home-card-label">Life</span>
-                    <span class="home-card-desc">Hobbies, hiking, and more — coming soon</span>
-                </a>
-                <a href="contact.html" class="home-card">
-                    <span class="home-card-label">Contact</span>
-                    <span class="home-card-desc">Say hello</span>
-                </a>
+            <div class="home-showcase" aria-label="Featured projects">
+                <div class="showcase-stack" id="showcase-stack">
+                    <article class="showcase-card active" data-index="0">
+                        <div class="showcase-card-visual showcase-visual-1"></div>
+                        <div class="showcase-card-body">
+                            <span class="showcase-num">01</span>
+                            <h2>MetaCoreLife</h2>
+                            <p>Social platform for personal growth, challenges, and community.</p>
+                            <div class="showcase-tags">
+                                <span>React</span><span>Supabase</span><span>SaaS</span>
+                            </div>
+                            <a href="project12.html" class="showcase-link">View project <i class="fas fa-arrow-up-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="showcase-card" data-index="1">
+                        <div class="showcase-card-visual showcase-visual-2"></div>
+                        <div class="showcase-card-body">
+                            <span class="showcase-num">02</span>
+                            <h2>River Forecasting</h2>
+                            <p>ML models for river levels with interactive visualizations.</p>
+                            <div class="showcase-tags">
+                                <span>Python</span><span>ML</span><span>Data Viz</span>
+                            </div>
+                            <a href="project1.html" class="showcase-link">View project <i class="fas fa-arrow-up-right"></i></a>
+                        </div>
+                    </article>
+                    <article class="showcase-card" data-index="2">
+                        <div class="showcase-card-visual showcase-visual-3"></div>
+                        <div class="showcase-card-body">
+                            <span class="showcase-num">03</span>
+                            <h2>Hive Agent Framework</h2>
+                            <p>Agent workflows from natural-language goals.</p>
+                            <div class="showcase-tags">
+                                <span>TypeScript</span><span>FastAPI</span><span>LLMs</span>
+                            </div>
+                            <a href="project13.html" class="showcase-link">View project <i class="fas fa-arrow-up-right"></i></a>
+                        </div>
+                    </article>
+                </div>
+                <div class="showcase-controls" role="tablist" aria-label="Project slides">
+                    <button type="button" class="showcase-dot active" data-slide="0" aria-label="Project 1" aria-selected="true"></button>
+                    <button type="button" class="showcase-dot" data-slide="1" aria-label="Project 2" aria-selected="false"></button>
+                    <button type="button" class="showcase-dot" data-slide="2" aria-label="Project 3" aria-selected="false"></button>
+                </div>
             </div>
+        </div>
+
+        <aside class="home-widgets reveal" aria-label="Quick info">
+            <div class="glass-widget widget-status">
+                <span class="status-dot" aria-hidden="true"></span>
+                <div>
+                    <strong>Available for opportunities</strong>
+                    <span>Open to roles & collaborations</span>
+                </div>
+            </div>
+            <a href="life.html" class="glass-widget widget-life">
+                <span class="widget-emoji" aria-hidden="true">🏔️</span>
+                <div>
+                    <strong>Life page</strong>
+                    <span>Hiking pics? Soon™ — will upload pictures soon!!</span>
+                </div>
+            </a>
+        </aside>
+
+        <section class="home-quick-links reveal" aria-label="Site sections">
+            <a href="about.html" class="quick-link-card">
+                <span>About</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="skills.html" class="quick-link-card">
+                <span>Skills</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="experience.html" class="quick-link-card">
+                <span>Experience</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
+            <a href="contact.html" class="quick-link-card">
+                <span>Contact</span>
+                <i class="fas fa-arrow-right" aria-hidden="true"></i>
+            </a>
         </section>
     </main>
 
     <div id="site-footer"></div>
     <script src="js/site.js" defer></script>
+    <script src="js/home.js" defer></script>
 </body>
 </html>
