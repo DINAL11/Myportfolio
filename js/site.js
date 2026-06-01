@@ -1,21 +1,51 @@
 (function () {
   const NAV_ITEMS = [
-    { href: 'index.html', label: 'Home', page: 'home' },
-    { href: 'about.html', label: 'About', page: 'about' },
     { href: 'work.html', label: 'Work', page: 'work' },
-    { href: 'skills.html', label: 'Skills', page: 'skills' },
+    { href: 'about.html', label: 'About', page: 'about' },
     { href: 'life.html', label: 'Life', page: 'life' },
     { href: 'experience.html', label: 'Experience', page: 'experience' },
     { href: 'contact.html', label: 'Contact', page: 'contact' },
   ];
 
+  const NAV_ITEMS_INNER = [
+    { href: 'index.html', label: 'Home', page: 'home' },
+    ...NAV_ITEMS,
+    { href: 'skills.html', label: 'Skills', page: 'skills' },
+  ];
+
   const currentPage = document.body.dataset.page || 'home';
+  const isSpatialHome = document.body.classList.contains('spatial-theme');
 
   function renderHeader() {
     const header = document.getElementById('site-header');
     if (!header) return;
 
-    const links = NAV_ITEMS.map(
+    if (isSpatialHome) {
+      const links = NAV_ITEMS.map(
+        (item) =>
+          `<a href="${item.href}" class="nav-link${item.page === currentPage ? ' active' : ''}">${item.label}</a>`
+      ).join('');
+
+      header.innerHTML = `
+        <header class="nav-header nav-spatial">
+          <div class="nav-spatial-wrap">
+            <a href="index.html" class="logo logo-mini" aria-label="Home">
+              <span class="logo-mark">D</span>
+            </a>
+            <nav class="nav-pill" aria-label="Main">${links}</nav>
+            <a href="LORs.pdf" class="nav-resume" target="_blank" rel="noopener noreferrer">
+              <i class="fas fa-file-lines" aria-hidden="true"></i>
+              <span>View resume</span>
+            </a>
+            <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
+              <span></span><span></span><span></span>
+            </button>
+          </div>
+        </header>`;
+      return;
+    }
+
+    const links = NAV_ITEMS_INNER.map(
       (item) =>
         `<a href="${item.href}" class="nav-link${item.page === currentPage ? ' active' : ''}">${item.label}</a>`
     ).join('');
@@ -57,7 +87,7 @@
 
   function initNav() {
     const menuToggle = document.querySelector('.menu-toggle');
-    const navMenu = document.querySelector('.nav-menu');
+    const navMenu = document.querySelector('.nav-menu') || document.querySelector('.nav-pill');
     if (!menuToggle || !navMenu) return;
 
     menuToggle.addEventListener('click', () => {
