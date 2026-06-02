@@ -33,9 +33,9 @@
               <span class="logo-mark">D</span>
             </a>
             <nav class="nav-pill" aria-label="Main">${links}</nav>
-            <a href="LORs.pdf" class="nav-resume" target="_blank" rel="noopener noreferrer">
+            <a href="LORs.pdf" class="nav-resume" target="_blank" rel="noopener noreferrer" title="Letters of recommendation">
               <i class="fas fa-file-lines" aria-hidden="true"></i>
-              <span>View resume</span>
+              <span>LORs</span>
             </a>
             <button class="menu-toggle" type="button" aria-label="Open menu" aria-expanded="false">
               <span></span><span></span><span></span>

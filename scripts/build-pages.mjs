@@ -59,7 +59,7 @@ const skillsInner = `
         <header class="page-hero reveal">
             <p class="page-eyebrow">Skills</p>
             <h1 class="page-title">What I work with</h1>
-            <p class="page-lead">Tools and technologies I use in projects — kept here so the homepage stays simple.</p>
+            <p class="page-lead">Web development, Shopify & e-commerce, data, and systems — grouped by what I reach for on real projects.</p>
         </header>
         ${readSection('skills', true).replace('skills-section', 'skills-section page-section')}
 `;
@@ -72,18 +72,6 @@ const workInner = `
         </header>
         ${readSection('projects').replace('projects-section', 'projects-section page-section')}
         ${readSection('caseStudies')}
-`;
-
-const credentialsInner = `
-        <header class="page-hero reveal">
-            <p class="page-eyebrow">Experience</p>
-            <h1 class="page-title">Beyond the codebase</h1>
-            <p class="page-lead">Leadership, learning, research, and conferences.</p>
-        </header>
-        ${readSection('leadership')}
-        ${readSection('certifications')}
-        ${readSection('research')}
-        ${readSection('conferences')}
 `;
 
 const contactInner = `
@@ -106,10 +94,6 @@ fs.writeFileSync(
 fs.writeFileSync(
   'work.html',
   page("Work — Dinal Dholiya", "Projects and case studies", 'work', 'page-inner', workInner)
-);
-fs.writeFileSync(
-  'experience.html',
-  page("Experience — Dinal Dholiya", "Leadership, certifications, research", 'experience', 'page-inner', credentialsInner)
 );
 fs.writeFileSync(
   'contact.html',
