@@ -25,8 +25,13 @@ const foot = `
     </main>
     <div id="site-footer"></div>
     <script src="js/site.js" defer></script>
+{{EXTRA_SCRIPTS}}
 </body>
 </html>`;
+
+function pageFoot(extraScripts = '') {
+  return foot.replace('{{EXTRA_SCRIPTS}}', extraScripts);
+}
 
 function readSection(name, stripHeader = false) {
   let html = fs.readFileSync(path.join('_sections', `${name}.html`), 'utf8');
@@ -36,14 +41,14 @@ function readSection(name, stripHeader = false) {
   return html;
 }
 
-function page(title, desc, pageId, bodyClass, inner) {
+function page(title, desc, pageId, bodyClass, inner, extraScripts = '') {
   return head
     .replace('{{TITLE}}', title)
     .replace('{{DESC}}', desc)
     .replace('{{BODY_CLASS}}', bodyClass)
     .replace('{{PAGE_ID}}', pageId)
     + inner
-    + foot;
+    + pageFoot(extraScripts);
 }
 
 const aboutInner = `
@@ -65,13 +70,12 @@ const skillsInner = `
 `;
 
 const workInner = `
-        <header class="page-hero reveal">
+        <header class="page-hero reveal page-hero-compact">
             <p class="page-eyebrow">Work</p>
-            <h1 class="page-title">Projects & case studies</h1>
-            <p class="page-lead">Things I've built and explored in depth.</p>
+            <h1 class="page-title">Selected projects</h1>
+            <p class="page-lead">Pick a category — each project links to demos, papers, and code where available.</p>
         </header>
-        ${readSection('projects').replace('projects-section', 'projects-section page-section')}
-        ${readSection('caseStudies')}
+        ${readSection('projects')}
 `;
 
 const contactInner = `
@@ -93,7 +97,7 @@ fs.writeFileSync(
 );
 fs.writeFileSync(
   'work.html',
-  page("Work — Dinal Dholiya", "Projects and case studies", 'work', 'page-inner', workInner)
+  page("Work — Dinal Dholiya", "Projects and case studies", 'work', 'page-inner', workInner, '\n    <script src="js/work.js" defer></script>')
 );
 fs.writeFileSync(
   'contact.html',
