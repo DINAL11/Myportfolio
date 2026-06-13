@@ -1,0 +1,177 @@
+%-------------------------
+% Resume in LaTeX — Dinal Dholiya
+% Compile: pdflatex Dinal_dholiya_resume.tex
+%-------------------------
+\documentclass[letterpaper,11pt]{article}
+
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\input{glyphtounicode}
+\pdfgentounicode=1
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\addtolength{\oddsidemargin}{-0.5in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1in}
+\addtolength{\topmargin}{-.5in}
+\addtolength{\textheight}{1.0in}
+
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+
+\titleformat{\section}{\vspace{-4pt}\scshape\raggedright\large\bfseries}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+
+\newcommand{\resumeItem}[1]{\item\small{#1 \vspace{-2pt}}}
+\newcommand{\resumeSubheading}[4]{
+  \vspace{-2pt}\item
+    \begin{tabular*}{0.97\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & #2 \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+  \item
+    \begin{tabular*}{0.97\textwidth}{l@{\extracolsep{\fill}}r}
+      \small\textbf{#1} & \small #2 \\
+    \end{tabular*}\vspace{-7pt}
+}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.15in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+
+\begin{document}
+
+%----------HEADING----------
+\begin{center}
+    {\Huge \scshape Dinal Dholiya} \\ \vspace{1pt}
+    \small (917) 348-4579 $|$ \href{mailto:dinalben@buffalo.edu}{dinalben@buffalo.edu} $|$ 
+    \href{https://dinal.site}{dinal.site} $|$ 
+    \href{https://github.com/DINAL11}{github.com/DINAL11} $|$ 
+    \href{https://linkedin.com/in/dinaldholiya}{LinkedIn} $|$ 
+    \href{https://leetcode.com/DINAL11}{LeetCode}
+\end{center}
+
+%-----------EDUCATION-----------
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading
+    {University at Buffalo, The State University of New York}{Buffalo, NY}
+    {B.S. Computer Science, GPA: 3.5/4.0}{May 2025}
+  \resumeItemListStart
+    \resumeItem{Concentration: Software Development, System Administration \& Distributed Systems; Minor: Mathematics}
+    \resumeItem{Dean's List; International Merit Scholarship Awardee}
+  \resumeItemListEnd
+\resumeSubHeadingListEnd
+
+%-----------SKILLS-----------
+\section{Technical Skills}
+\begin{itemize}[leftmargin=0.15in, label={}]
+  \small{\item{
+    \textbf{Languages}{: Python, TypeScript, JavaScript, Java, C/C++, Go, SQL} \\
+    \textbf{Frameworks}{: Next.js, React, Node.js, Express, Django, Spring Boot, Tailwind CSS} \\
+    \textbf{Data \& ML}{: PySpark, Pandas, Scikit-learn, PyTorch, TensorFlow, Streamlit, MongoDB, PostgreSQL} \\
+    \textbf{Tools}{: Git, Docker, AWS, Vercel, Linux/Unix, REST APIs, Stripe}
+  }}
+\end{itemize}
+
+%-----------EXPERIENCE-----------
+\section{Experience}
+\resumeSubHeadingListStart
+
+  \resumeSubheading
+    {Undergraduate Researcher}{Jan 2024 -- Present}
+    {CPI-NS Lab, University at Buffalo}{Buffalo, NY}
+  \resumeItemListStart
+    \resumeItem{Recreated distributed systems evaluation experiments and automated performance graph generation from experimental data using Python, C++, and SQL.}
+    \resumeItem{Built visualization tooling with UI/UX-focused interfaces to help researchers interpret benchmark results faster.}
+    \resumeItem{Contributed to a research-oriented distributed database prototype evaluated on CloudLab infrastructure.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {Software Developer Intern}{May 2023 -- Sep 2023}
+    {lathiyaSolutions}{India}
+  \resumeItemListStart
+    \resumeItem{Built and deployed responsive web applications with React and Next.js on Vercel, using serverless functions for backend APIs.}
+    \resumeItem{Collaborated with design and engineering teams to improve UI polish and cross-device compatibility.}
+  \resumeItemListEnd
+
+  \resumeSubheading
+    {IT Intern}{Jan 2023 -- Present}
+    {International Education, University at Buffalo}{Buffalo, NY}
+  \resumeItemListStart
+    \resumeItem{Supported hardware/software installs, troubleshooting, inventory tracking, and technical support for faculty and staff.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------PROJECTS-----------
+\section{Projects}
+\resumeSubHeadingListStart
+
+  \resumeProjectHeading
+    {\href{https://github.com/DINAL11/focus-dashboard}{Focus Dashboard} $|$ Next.js, React 19, TypeScript, Recharts}{2025}
+  \resumeItemListStart
+    \resumeItem{Privacy-first productivity app with Pomodoro timer, habit tracker, goals, analytics charts, and reflection journal; persists locally with no backend.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://github.com/DINAL11/metacorelife}{MetaCoreLife Social Platform} $|$ React, Stripe, SaaS}{2025}
+  \resumeItemListStart
+    \resumeItem{Full-stack social product for personal growth with challenges, community features, and Stripe-backed monetization; live at \href{https://metacorelife.com}{metacorelife.com}.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://github.com/DINAL11/business-data-pipeline}{Full-Stack Business Data Pipeline} $|$ Python, React, PostgreSQL, ETL}{2024}
+  \resumeItemListStart
+    \resumeItem{Automated ETL pipeline and creator analytics dashboard for real-time business insights and reporting.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://github.com/DINAL11/3D-Word-Cloud-Dinal}{3D Word Cloud Visualization} $|$ FastAPI, Three.js, NLP, TypeScript}{2025}
+  \resumeItemListStart
+    \resumeItem{Interactive NLP web app that extracts article topics and renders them as an explorable 3D visualization; \href{https://3-d-word-cloud-dinal.vercel.app}{live demo}.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://github.com/DINAL11/ksense-healthcare-assessment}{Ksense Healthcare API Assessment} $|$ Python, REST, Healthcare}{2026}
+  \resumeItemListStart
+    \resumeItem{Paginated patient ingestion with retry logic, clinical risk scoring, fever detection, and data-quality flagging for malformed vitals.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://github.com/DINAL11/Woyage-Product-App}{Woyage Storefront} $|$ Next.js, Tailwind, TypeScript}{2025}
+  \resumeItemListStart
+    \resumeItem{Modern e-commerce storefront with search, category filters, sorting, ratings, and slide-out cart powered by the DummyJSON API.}
+  \resumeItemListEnd
+
+  \resumeProjectHeading
+    {\href{https://github.com/DINAL11/scalable-health-predictor}{Health Record Insights Pipeline} $|$ Python, PySpark, Streamlit, ML}{2025}
+  \resumeItemListStart
+    \resumeItem{Four-phase UB data-science project: cleaning, modeling, Spark scale-out, and a Streamlit prediction app on public health survey data.}
+  \resumeItemListEnd
+
+\resumeSubHeadingListEnd
+
+%-----------LEADERSHIP-----------
+\section{Leadership \& Activities}
+\resumeSubHeadingListStart
+  \resumeItem{\textbf{SEAS Peer Mentor}, University at Buffalo}
+  \resumeItem{\textbf{Publicity Team Lead}, UB Hacking}
+  \resumeItem{\textbf{STEM Outreach Coordinator}, Community Volunteer Program, UB}
+  \resumeItem{\textbf{Under-19 National Player}, Roll Ball \& Rugby, India}
+\resumeSubHeadingListEnd
+
+\end{document}
