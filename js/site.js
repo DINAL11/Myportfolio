@@ -29,8 +29,8 @@
       header.innerHTML = `
         <header class="nav-header nav-spatial">
           <div class="nav-spatial-wrap">
-            <a href="index.html" class="logo logo-mini" aria-label="Home">
-              <span class="logo-mark">D</span>
+            <a href="index.html" class="logo logo-spatial" aria-label="Home">
+              <span class="logo-text">Dinal</span>
             </a>
             <nav class="nav-pill" aria-label="Main">${links}</nav>
             <a href="LORs.pdf" class="nav-resume" target="_blank" rel="noopener noreferrer" title="Letters of recommendation">
@@ -151,10 +151,39 @@
   function initContactForm() {
     const form = document.querySelector('.contact-form');
     if (!form) return;
-    form.addEventListener('submit', (e) => {
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      alert('Thank you for your message! I will get back to you soon.');
-      form.reset();
+      const btn = form.querySelector('button[type="submit"]');
+      const status = form.querySelector('.form-status');
+      if (btn) btn.disabled = true;
+
+      try {
+        const res = await fetch(form.action, {
+          method: 'POST',
+          body: new FormData(form),
+          headers: { Accept: 'application/json' },
+        });
+
+        if (!res.ok) throw new Error('Send failed');
+
+        if (status) {
+          status.textContent = 'Message sent — I will get back to you soon.';
+          status.hidden = false;
+        } else {
+          alert('Thank you! Your message was sent.');
+        }
+        form.reset();
+      } catch {
+        if (status) {
+          status.textContent = 'Something went wrong. Email me at dinaldholiya@gmail.com instead.';
+          status.hidden = false;
+        } else {
+          alert('Could not send — please email dinaldholiya@gmail.com directly.');
+        }
+      } finally {
+        if (btn) btn.disabled = false;
+      }
     });
   }
 
