@@ -1,106 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinal Dholiya — Software Engineer</title>
-    <meta name="description" content="Portfolio of Dinal Dholiya — software engineer, builder, and explorer.">
-    <link rel="stylesheet" href="styles.css">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dinal Dholiya — Software Engineer</title>
+  <meta name="description" content="Dinal Dholiya, software engineer in Chicago. Projects, research, and life.">
+  <meta name="theme-color" content="#16386a">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="os.css">
 </head>
-<body class="page-home spatial-theme" data-page="home">
-    <div class="spatial-bg" aria-hidden="true">
-        <canvas id="starfield" class="starfield-canvas"></canvas>
-        <div class="gradient-orb orb-1"></div>
-        <div class="gradient-orb orb-2"></div>
-        <div class="gradient-orb orb-3"></div>
-        <div class="spatial-grid"></div>
+<body data-device="phone">
+  <div class="page">
+    <div class="switcher" role="group" aria-label="Choose a view">
+      <button type="button" data-device-set="phone" class="is-on" aria-pressed="true">Phone</button>
+      <button type="button" data-device-set="laptop" aria-pressed="false">Laptop</button>
+      <button type="button" data-device-set="desktop" aria-pressed="false">Desktop</button>
     </div>
 
-    <div id="site-header"></div>
-
-    <main class="page-main home-spatial">
-        <div class="home-layout reveal">
-            <div class="home-copy">
-                <h1 class="home-headline">
-                    Hi, I'm <span class="text-gradient">Dinal.</span>
-                </h1>
-                <p class="home-role">Software engineer · Chicago</p>
-                <p class="home-lead">
-                    I build full-stack products, data systems, and research tooling — reliable under the hood,
-                    thoughtful on the surface.
-                </p>
-                <div class="home-actions">
-                    <a href="work.html" class="btn btn-primary btn-glow">
-                        <span>View my work</span>
-                        <i class="fas fa-arrow-right" aria-hidden="true"></i>
-                    </a>
-                    <a href="contact.html" class="btn btn-secondary">Get in touch</a>
+    <div class="stage">
+      <div class="phone-layout">
+        <div class="phone">
+          <div class="screen">
+            <div class="island" aria-hidden="true"></div>
+            <div class="home-ui" id="home-ui">
+              <div class="status">
+                <time data-clock datetime="">9:41</time>
+                <div class="status-icons" aria-hidden="true">
+                  <div class="sig"><i></i><i></i><i></i><i></i></div>
+                  <div class="batt"><span></span></div>
                 </div>
+              </div>
+              <div class="notifs" id="phone-notifs" aria-label="Notifications"></div>
+              <div class="apps" id="phone-apps"></div>
             </div>
-
-            <div class="home-showcase" aria-label="Featured projects">
-                <div class="showcase-stack" id="showcase-stack">
-                    <article class="showcase-card active" data-index="0">
-                        <div class="showcase-card-visual showcase-visual-1"></div>
-                        <div class="showcase-card-body">
-                            <span class="showcase-num">01</span>
-                            <h2>MetaCoreLife</h2>
-                            <p>Social platform for personal growth, challenges, and community.</p>
-                            <div class="showcase-tags">
-                                <span>React</span><span>Supabase</span><span>SaaS</span>
-                            </div>
-                            <a href="project12.html" class="showcase-link">View project <i class="fas fa-arrow-up-right"></i></a>
-                        </div>
-                    </article>
-                    <article class="showcase-card" data-index="1">
-                        <div class="showcase-card-visual showcase-visual-2"></div>
-                        <div class="showcase-card-body">
-                            <span class="showcase-num">02</span>
-                            <h2>River Forecasting</h2>
-                            <p>ML models for river levels with interactive visualizations.</p>
-                            <div class="showcase-tags">
-                                <span>Python</span><span>ML</span><span>Data Viz</span>
-                            </div>
-                            <a href="project1.html" class="showcase-link">View project <i class="fas fa-arrow-up-right"></i></a>
-                        </div>
-                    </article>
-                    <article class="showcase-card" data-index="2">
-                        <div class="showcase-card-visual showcase-visual-3"></div>
-                        <div class="showcase-card-body">
-                            <span class="showcase-num">03</span>
-                            <h2>Focus Dashboard</h2>
-                            <p>Productivity workspace — Pomodoro, habits, goals, and analytics.</p>
-                            <div class="showcase-tags">
-                                <span>Next.js</span><span>TypeScript</span><span>Recharts</span>
-                            </div>
-                            <a href="project18.html" class="showcase-link">View project <i class="fas fa-arrow-up-right"></i></a>
-                        </div>
-                    </article>
-                </div>
-                <div class="showcase-controls" role="tablist" aria-label="Project slides">
-                    <button type="button" class="showcase-dot active" data-slide="0" aria-label="Project 1" aria-selected="true"></button>
-                    <button type="button" class="showcase-dot" data-slide="1" aria-label="Project 2" aria-selected="false"></button>
-                    <button type="button" class="showcase-dot" data-slide="2" aria-label="Project 3" aria-selected="false"></button>
-                </div>
+            <div class="sheet" id="sheet" hidden></div>
+            <div class="dock" aria-label="Dock">
+              <a data-blank href="https://github.com/DINAL11" aria-label="GitHub">
+                <span class="ico" style="background:#10233f"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg></span>
+              </a>
+              <a data-blank href="https://www.linkedin.com/in/dinal-dholiya/" aria-label="LinkedIn">
+                <span class="ico" style="background:#0a66c2"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6.5 9H4V20h2.5V9zM5.2 4A1.6 1.6 0 1 0 5.2 7.2 1.6 1.6 0 0 0 5.2 4zM20 20h-2.5v-5.6c0-1.6-.6-2.6-2-2.6-1 0-1.6.7-1.9 1.4-.1.2-.1.6-.1.9V20H11V9h2.4v1.5c.4-.7 1.3-1.8 3.2-1.8 2.3 0 4 1.5 4 4.8V20z"/></svg></span>
+              </a>
+              <button type="button" data-open="mail" aria-label="Mail">
+                <span class="ico" style="background:#3d8eea"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></span>
+              </button>
+              <a data-blank href="LORs.pdf" aria-label="Letters of recommendation">
+                <span class="ico" style="background:#e8f1fb"><svg viewBox="0 0 24 24" fill="none" stroke="#16386a" stroke-width="1.8"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span>
+              </a>
             </div>
+          </div>
         </div>
+        <aside class="side" id="side" aria-label="About this view"></aside>
+      </div>
 
-        <aside class="home-widgets reveal" aria-label="Quick info">
-            <div class="glass-widget widget-status">
-                <span class="status-dot" aria-hidden="true"></span>
-                <div>
-                    <strong>Available for opportunities</strong>
-                    <span>Open to roles & collaborations</span>
+      <div class="desk-host">
+        <div class="laptop-frame">
+          <div class="screen">
+              <div class="menu">
+                <div class="menu-left">
+                  <button class="apple" type="button" data-home aria-label="Home">Dinal</button>
+                  <button type="button" data-open="projects">Projects</button>
+                  <button type="button" data-open="research">Research</button>
+                  <button type="button" data-open="extras">Extras</button>
                 </div>
+                <div class="menu-right">
+                  <span data-date>Sun Oct 11</span>
+                  <span class="zone" data-zone></span>
+                  <time data-clock>9:41</time>
+                </div>
+              </div>
+              <div class="desktop" id="desktop">
+                <div class="desk-icons" id="desk-icons"></div>
+                <div class="hello">
+                  <strong>Dinal Dholiya</strong>
+                  <span>Software engineer · Chicago</span>
+                </div>
+                <div class="notif-panel">
+                  <h2>Notifications</h2>
+                  <div id="desk-notifs"></div>
+                </div>
+                <div class="win" id="win" hidden>
+                  <div class="win-bar" id="win-bar">
+                    <div class="traffic">
+                      <button class="red" type="button" data-close aria-label="Close"></button>
+                      <button class="yellow" type="button" data-min aria-label="Minimize"></button>
+                      <button class="green" type="button" data-max aria-label="Resize"></button>
+                    </div>
+                    <strong id="win-title">Projects</strong>
+                    <span></span>
+                  </div>
+                  <div class="win-body" id="win-body"></div>
+                </div>
+              </div>
+              <div class="desk-dock" aria-label="Dock">
+                <a data-blank href="https://github.com/DINAL11" aria-label="GitHub">
+                  <span class="ico" style="background:#10233f"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 2a10 10 0 0 0-3.16 19.49c.5.09.68-.22.68-.48v-1.7c-2.78.6-3.37-1.34-3.37-1.34-.45-1.16-1.1-1.47-1.1-1.47-.9-.62.07-.6.07-.6 1 .07 1.53 1.03 1.53 1.03.89 1.53 2.34 1.09 2.91.83.09-.65.35-1.09.63-1.34-2.22-.25-4.55-1.11-4.55-4.94 0-1.09.39-1.99 1.03-2.69-.1-.25-.45-1.27.1-2.64 0 0 .84-.27 2.75 1.02a9.56 9.56 0 0 1 5 0c1.91-1.29 2.75-1.02 2.75-1.02.55 1.37.2 2.39.1 2.64.64.7 1.03 1.6 1.03 2.69 0 3.84-2.34 4.68-4.57 4.93.36.31.68.92.68 1.86v2.76c0 .26.18.58.69.48A10 10 0 0 0 12 2z"/></svg></span>
+                </a>
+                <a data-blank href="https://www.linkedin.com/in/dinal-dholiya/" aria-label="LinkedIn">
+                  <span class="ico" style="background:#0a66c2"><svg viewBox="0 0 24 24" fill="#fff"><path d="M6.5 9H4V20h2.5V9zM5.2 4A1.6 1.6 0 1 0 5.2 7.2 1.6 1.6 0 0 0 5.2 4zM20 20h-2.5v-5.6c0-1.6-.6-2.6-2-2.6-1 0-1.6.7-1.9 1.4-.1.2-.1.6-.1.9V20H11V9h2.4v1.5c.4-.7 1.3-1.8 3.2-1.8 2.3 0 4 1.5 4 4.8V20z"/></svg></span>
+                </a>
+                <button type="button" data-open="mail" aria-label="Mail">
+                  <span class="ico" style="background:#3d8eea"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/></svg></span>
+                </button>
+                <a data-blank href="LORs.pdf" aria-label="Letters of recommendation">
+                  <span class="ico" style="background:#e8f1fb"><svg viewBox="0 0 24 24" fill="none" stroke="#16386a" stroke-width="1.8"><path d="M7 3h7l5 5v13H7z"/><path d="M14 3v5h5"/></svg></span>
+                </a>
+              </div>
             </div>
-        </aside>
-
-    </main>
-
-    <div id="site-footer"></div>
-    <script src="js/site.js" defer></script>
-    <script src="js/home.js" defer></script>
+            <div class="laptop-deck" aria-hidden="true"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  <script src="js/os.js"></script>
 </body>
 </html>
