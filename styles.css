@@ -2691,13 +2691,13 @@ section {
 }
 
 .work-project-card:hover {
-    border-color: rgba(99, 102, 241, 0.35);
-    background: rgba(99, 102, 241, 0.06);
+    border-color: rgba(142, 183, 238, 0.4);
+    background: rgba(61, 142, 234, 0.08);
 }
 
 .work-project-card--highlight {
-    border-color: rgba(236, 72, 153, 0.25);
-    background: rgba(236, 72, 153, 0.06);
+    border-color: rgba(142, 183, 238, 0.28);
+    background: rgba(61, 142, 234, 0.08);
 }
 
 .work-project-main h3 {
