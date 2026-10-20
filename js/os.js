@@ -175,6 +175,8 @@
     sep: "fall", oct: "fall", nov: "fall", dec: "modern", grid: "waves", ink: "waves"
   };
 
+  const VALID_APPS = ["projects", "research", "extras", "credentials", "skills", "focus", "ai", "gallery", "life", "letters", "mail"];
+  const isNarrowMobile = () => window.matchMedia("(max-width: 760px)").matches;
   const state = {
     device: "phone",
     app: null,
@@ -412,7 +414,7 @@
       return `<p class="focus-lead">No photos yet. Add image files to the gallery folder, then list the file names in gallery/manifest.json.</p>`;
     }
     return `<div class="photo-grid">${state.photos.map((name) => `<figure>
-      <img src="gallery/${name}" alt="">
+      <img src="gallery/${name}" alt="${name.replace(/[-_]/g, " ").replace(/\.[^.]+$/, "")}" loading="lazy">
       <button type="button" data-wall="photo:${name}">Use as wallpaper</button>
     </figure>`).join("")}</div>`;
   }
@@ -487,7 +489,7 @@
   }
 
   function titles() {
-    if (state.app === "projects" && state.item) return projectById(state.item).title;
+    if (state.app === "projects" && state.item) { const p = projectById(state.item); if (p) return p.title; }
     return { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", focus: "Focus", life: "Life", ai: "AI", letters: "Letters", mail: "Contact" }[state.app] || "Dinal";
   }
 
@@ -512,13 +514,23 @@
       btn.classList.toggle("is-on", on);
       btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
+    // Highlight the currently-open app in menus / docks / icon rails (not project list items).
+    document.querySelectorAll(".menu [data-open], .desk-icons [data-open], .desk-dock [data-open], .apps [data-open], .dock [data-open]").forEach((btn) => {
+      const on = btn.dataset.open === state.app;
+      btn.classList.toggle("is-on", on);
+      if (on) btn.setAttribute("aria-current", "true"); else btn.removeAttribute("aria-current");
+    });
     const hash = ["#" + state.device, state.app, state.item].filter(Boolean).join("/");
     if (location.hash !== hash) history.replaceState(null, "", hash);
   }
 
   function openApp(app, item) {
+    if (!VALID_APPS.includes(app)) return;
     state.app = app;
     state.item = item || null;
+    const win = $("win");
+    win.classList.remove("is-min", "is-max");
+    win.style.left = ""; win.style.top = "";
     if (app === "projects" && item) {
       const project = projectById(item);
       if (project) state.group = project.group;
@@ -535,7 +547,12 @@
   }
 
   function setDevice(device) {
+    // Real phones/tablets in portrait get the phone experience only — no fake frame, no laptop/desktop switcher.
+    if (isNarrowMobile()) device = "phone";
+    if (!["phone", "laptop", "desktop"].includes(device)) device = "phone";
     state.device = device;
+    const win = $("win");
+    win.classList.remove("is-max", "is-min"); win.style.left = ""; win.style.top = "";
     render();
     try { localStorage.setItem("dinal-device", device); } catch (err) { /* private mode */ }
   }
@@ -566,8 +583,10 @@
   document.body.addEventListener("click", (event) => {
     const blankLink = event.target.closest("[data-blank]");
     if (blankLink) {
+      const href = blankLink.getAttribute("href") || "";
+      if (/^(mailto:|tel:)/i.test(href)) return; // let the OS handle mail/phone normally
       event.preventDefault();
-      window.open(blankLink.getAttribute("href"), "_blank", "noopener,noreferrer");
+      window.open(href, "_blank", "noopener,noreferrer");
       return;
     }
     if (event.target.closest("#wall-open")) {
@@ -613,7 +632,8 @@
       return;
     }
     if (event.target.closest("[data-min]")) {
-      $("win").classList.add("is-min");
+      // Minimize returns to the desktop (window can be reopened from any icon/menu/dock).
+      goHome();
       return;
     }
     if (event.target.closest("[data-clear-item]")) {
@@ -641,8 +661,8 @@
     }
     const opener = event.target.closest("button[data-open], a[data-open]");
     if (!opener) return;
-    // While an app is open, do not treat background notifications / icon clicks as navigation.
-    if (state.app && opener.closest(".desk-icons, .notif-panel, #desk-notifs, #phone-notifs, .notifs")) return;
+    // Any real app launcher (menu, desk icons, dock, notifications, phone apps) switches
+    // straight to that app — no need to close the current window first.
     openApp(opener.dataset.open, opener.dataset.item || null);
   });
 
@@ -667,9 +687,20 @@
   bar.addEventListener("pointerup", () => { drag = null; });
 
   const parts = location.hash.replace("#", "").split("/").filter(Boolean);
-  state.device = "phone";
-  if (parts[1]) state.app = parts[1];
+  // On a real phone always start in the phone view; on larger screens respect the saved/last view.
+  if (isNarrowMobile()) state.device = "phone";
+  else if (["phone", "laptop", "desktop"].includes(parts[0])) state.device = parts[0];
+  else { try { const saved = localStorage.getItem("dinal-device"); if (["phone", "laptop", "desktop"].includes(saved)) state.device = saved; } catch (err) { /* private mode */ } }
+  if (parts[1] && VALID_APPS.includes(parts[1])) state.app = parts[1];
   if (parts[2]) state.item = parts[2];
+  // Validate deep links so a bad/stale hash cannot crash or open a phantom app.
+  if (state.app === "projects" && state.item && !projectById(state.item)) state.item = null;
+  if (state.app === "research" && state.item && !PAPERS.find((p) => p.id === state.item)) state.item = null;
+  if (state.app === "extras" && state.item && !EXTRAS.find((p) => p.id === state.item)) state.item = null;
+  window.addEventListener("resize", () => {
+    if (isNarrowMobile() && state.device !== "phone") setDevice("phone");
+    const win = $("win"); win.style.left = ""; win.style.top = "";
+  });
 
   function startField() {
     const canvas = document.getElementById("field");
@@ -862,8 +893,7 @@
     }
 
     function frame() {
-      time += 0.012;
-      draw();
+      if (!document.hidden) { time += 0.012; draw(); }
       if (!reduced) requestAnimationFrame(frame);
     }
 
@@ -876,6 +906,18 @@
 
   function startBoot() {
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    // Repeat visits in the same tab skip the long intro — and any tap/click skips it too.
+    let seen = false;
+    try { seen = sessionStorage.getItem("dinal-boot") === "1"; sessionStorage.setItem("dinal-boot", "1"); } catch (err) { /* private mode */ }
+    if (seen || reduced) {
+      reveal.waves = reveal.wavesTo = 1; reveal.robot = reveal.robotTo = 1; reveal.net = 1;
+      document.body.dataset.boot = "ready";
+      applyWallMedia();
+      return;
+    }
+    const skip = () => { if (document.body.dataset.boot !== "ready") { document.body.dataset.boot = "ready"; applyWallMedia(); } };
+    document.addEventListener("pointerdown", skip, { once: false });
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" || e.key === "Enter") skip(); });
     const finish = () => {
       document.body.dataset.boot = "ready";
       applyWallMedia();
@@ -946,6 +988,14 @@
   function applyWallMedia() {
     const video = $("wall-video");
     if (!video) return;
+    // On phones / data-saver / reduced-motion, never stream the ~11MB video wallpapers.
+    const saveData = (navigator.connection && navigator.connection.saveData) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if ((isNarrowMobile() || saveData) && !wallMode.photo) {
+      document.body.dataset.wallKind = "canvas";
+      document.body.style.setProperty("--wall-tint", "transparent");
+      video.pause(); video.removeAttribute("src"); video.load();
+      return;
+    }
     if (wallMode.photo) {
       document.body.dataset.wallKind = "photo";
       document.body.style.setProperty("--wall-tint", "rgba(6, 14, 32, 0.28)");

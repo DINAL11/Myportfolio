@@ -1243,3 +1243,81 @@ body[data-boot="swipe"] .home-bar { opacity: 0; animation: none; }
   body[data-device="phone"] .page { justify-content: flex-start; }
   .switcher button { padding: 8px 10px; }
 }
+
+/* ============ v6 audit: accessibility, app switching, real-phone layout ============ */
+:focus-visible { outline: 3px solid #8eb7ee; outline-offset: 2px; border-radius: 6px; }
+.win-body :focus-visible, .sheet :focus-visible { outline-color: #1d5cbf; }
+button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation; }
+
+/* Window controls: 12px dots are un-tappable — give them a real hit area, keep the dot look */
+.win-bar { grid-template-columns: 100px 1fr 100px; }
+.traffic { gap: 2px; }
+.traffic button { width: 28px; height: 28px; flex-shrink: 0; background: transparent !important; position: relative; }
+.traffic button::before { content: ""; position: absolute; inset: 8px; border-radius: 50%; }
+.traffic .red::before { background: #ff5f57; }
+.traffic .yellow::before { background: #febc2e; }
+.traffic .green::before { background: #28c840; }
+.back { width: 40px; height: 40px; flex-shrink: 0; }
+
+/* Menu must never wrap/clip on narrow laptop windows */
+.menu-left { flex-wrap: nowrap; overflow-x: auto; scrollbar-width: none; }
+.menu-left::-webkit-scrollbar { display: none; }
+.menu-left > * { white-space: nowrap; flex-shrink: 0; }
+
+/* App switching is handled in JS: any launcher switches apps. The window keeps the
+   top layer where it overlaps (dragged/maximized), icons beside it stay clickable
+   because the window is inset from the icon rail and notification column. */
+.win { z-index: 5; }
+/* Pin desktop grid columns: hiding .hello when an app opens must not pull the
+   notification column into the centre, underneath the window. */
+.desk-icons { grid-column: 1; grid-row: 1; }
+.hello { grid-column: 2; grid-row: 1; }
+.notif-panel { grid-column: 3; grid-row: 1; }
+.desk-app, .app { min-width: 56px; min-height: 60px; justify-content: center; }
+.menu button.is-on, .desk-dock button.is-on { opacity: 1; text-decoration: underline; text-underline-offset: 4px; }
+.desk-app.is-on .ico, .app.is-on .ico, .dock button.is-on .ico, .desk-dock button.is-on .ico { outline: 2px solid #fff; outline-offset: 2px; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---- Real phone (iPhone/Android): full-bleed app, no fake frame, no device switcher ---- */
+@media (max-width: 760px) {
+  html, body { height: 100%; overscroll-behavior-y: none; }
+  body { overflow: hidden; }
+  .page, body[data-device="phone"] .page, body[data-device="laptop"] .page, body[data-device="desktop"] .page {
+    min-height: 100dvh; height: 100dvh; padding: 0; gap: 0; justify-content: flex-start; align-items: stretch; overflow: hidden;
+  }
+  .topbar { display: none !important; } /* no Phone/Laptop/Desktop + Wallpaper chrome on a real phone */
+  .stage { flex: 1; min-height: 0; width: 100%; align-items: stretch; }
+  /* Whatever the saved/hash device was, a narrow screen only ever shows the phone layout */
+  .desk-host { display: none !important; }
+  .phone-layout { display: flex !important; width: 100%; height: 100%; gap: 0; flex-direction: column; }
+  .side { display: none !important; } /* sheet already shows the same content inside the phone */
+  .phone {
+    width: 100% !important; max-width: none; height: 100%; aspect-ratio: auto;
+    padding: 0; border-radius: 0; box-shadow: none; background: none; transform: none !important;
+  }
+  .phone .screen { border-radius: 0; height: 100%; }
+  .island { display: none; } /* the real device has its own */
+  .status { padding-top: calc(14px + env(safe-area-inset-top)); }
+  .home-ui, .sheet { inset: 0 0 calc(104px + env(safe-area-inset-bottom)) 0; }
+  .phone .dock { left: 10px; right: 10px; bottom: calc(10px + env(safe-area-inset-bottom)); }
+  .apps { gap: 6px 2px; }
+  .apps .app, .phone .dock a, .phone .dock button { min-height: 56px; }
+  .apps .ico { width: 52px; height: 52px; border-radius: 15px; }
+  .notif { min-height: 76px; }
+  .sheet-head h2 { font-size: 24px; }
+  .groups, .stack { padding-bottom: 24px; }
+  .ai-tools { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
+  .win-body .life-traits, .life-traits { grid-template-columns: 1fr; }
+  .lock { padding-top: calc(48px + env(safe-area-inset-top)); }
+}
+
+/* Small laptop / tablet: keep the top menu as the app switcher, window fills the desk */
+@media (max-width: 980px) {
+  .desktop { grid-template-columns: 76px 1fr; }
+  .notif-panel { display: none; }
+  body[data-open="1"] .win { left: 84px; right: 8px; }
+  .win { right: 8px; }
+}
