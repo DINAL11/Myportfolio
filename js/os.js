@@ -41,8 +41,7 @@
     ]},
     { id: "cloud", group: "Data & ML", title: "3D word cloud", summary: "Article topics drawn as a word cloud you can orbit.", tags: ["Three.js", "JavaScript", "NLP", "React", "Vercel"], links: [
       ["Case study", "project14.html"],
-      ["Live", "https://3-d-word-cloud-dinal.vercel.app"],
-      ["GitHub", "https://github.com/DINAL11/3D-Word-Cloud-Dinal"]
+      ["Live", "https://3-d-word-cloud-dinal.vercel.app"]
     ]},
     { id: "healthrec", group: "Data & ML", title: "Health record insights", summary: "A four-phase capstone: clean the records, model them, scale with Spark, ship a Streamlit app.", tags: ["PySpark", "Python", "Spark ML", "Streamlit", "Pandas", "ML"], links: [
       ["Case study", "project24.html"],
@@ -436,7 +435,8 @@
 
   function galleryInner() {
     if (!state.photos.length) {
-      return `<p class="focus-lead">No photos yet. Add image files to the gallery folder, then list the file names in gallery/manifest.json.</p>`;
+      return `<p class="focus-lead">Photos from life and work will show up here soon. Until then, try a new look in Wallpaper.</p>
+        <div class="chips"><button class="chip" type="button" data-open="wallpaper">Open Wallpaper</button></div>`;
     }
     return `<div class="photo-grid">${state.photos.map((name) => `<figure>
       <img src="gallery/${name}" alt="${name.replace(/[-_]/g, " ").replace(/\.[^.]+$/, "")}" loading="lazy">

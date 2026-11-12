@@ -1134,6 +1134,12 @@ body[data-device="desktop"] .desk-dock {
 @media (max-width: 1080px) {
   .menu .zone, .menu [data-date] { display: none; }
 }
+/* Laptop menu gets crowded once Skills/AI were added — drop text items that already live as icons. */
+@media (max-width: 1180px) {
+  body[data-device="laptop"] .menu-left button[data-open="credentials"],
+  body[data-device="laptop"] .menu-left button[data-open="skills"],
+  body[data-device="laptop"] .menu-left button[data-open="ai"] { display: none; }
+}
 
 @media (max-width: 980px) {
   .phone-layout { flex-direction: column; gap: 28px; }
