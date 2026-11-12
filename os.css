@@ -801,6 +801,22 @@ body[data-open="1"] .desk-dock .dock-about { display: flex; }
   opacity: 0.85;
 }
 .wall-swatch.is-on { border-color: #fff; }
+.wall-sheet {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+.wall-sheet .wall-swatch {
+  min-height: 96px;
+  width: 100%;
+}
+.win-body .wall-sheet {
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+}
+.win-body .wall-swatch.is-on,
+.sheet .wall-swatch.is-on {
+  box-shadow: 0 0 0 2px #fff, 0 8px 20px rgba(4, 16, 36, 0.28);
+}
 .win.is-max { top: 8px !important; left: 8px !important; right: 8px !important; width: auto; height: auto; bottom: 8px; }
 .win.is-min { display: none; }
 .win-bar {

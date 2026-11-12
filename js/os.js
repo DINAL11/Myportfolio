@@ -123,7 +123,8 @@
     ["skills", "Skills", "#2f8a6e"],
     ["focus", "Focus", "#3d9ad4"],
     ["ai", "AI", "#6d5efc"],
-    ["gallery", "Gallery", "#2f8f7b"]
+    ["gallery", "Gallery", "#2f8f7b"],
+    ["wallpaper", "Wallpaper", "#1d5cbf"]
   ];
 
   const DESK_APPS = PHONE_APPS.concat([["life", "Life", "#1f6f9a"]]);
@@ -136,6 +137,7 @@
     credentials: '<circle cx="12" cy="8" r="3.2"/><path d="M8.2 12.2L7 20l5-2.4L17 20l-1.2-7.8"/>',
     skills: '<path d="M12 3l2.4 4.8 5.3.8-3.8 3.7.9 5.3L12 15.8 7.2 17.6l.9-5.3L4.3 8.6l5.3-.8z"/>',
     gallery: '<rect x="3" y="5" width="18" height="14" rx="2"/><circle cx="8.5" cy="10" r="1.4"/><path d="M3 16l5-4 4 3 3-2 6 5"/>',
+    wallpaper: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 14l4.5-3.5L12 14l3-2.5L21 15"/><circle cx="8" cy="9" r="1.5"/>',
     ai: '<path d="M12 3l1.3 4L17.5 8.5 13.3 9.8 12 14l-1.3-4.2L6.5 8.5 10.7 7z"/><path d="M18 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/>',
     letters: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/>',
     life: '<path d="M4 16l5-6 3 3 2-2 6 5"/><circle cx="8" cy="7" r="1.4"/>',
@@ -175,7 +177,7 @@
     sep: "fall", oct: "fall", nov: "fall", dec: "modern", grid: "waves", ink: "waves"
   };
 
-  const VALID_APPS = ["projects", "research", "extras", "credentials", "skills", "focus", "ai", "gallery", "life", "letters", "mail"];
+  const VALID_APPS = ["projects", "research", "extras", "credentials", "skills", "focus", "ai", "gallery", "wallpaper", "life", "letters", "mail"];
   const isNarrowMobile = () => window.matchMedia("(max-width: 760px)").matches;
   const state = {
     device: "phone",
@@ -274,7 +276,7 @@
 
   function sideHTML() {
     if (!state.app) return homeSide();
-    const titles = { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", focus: "Focus", life: "Life", ai: "AI", letters: "Letters", mail: "Contact" };
+    const titles = { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", wallpaper: "Wallpaper", focus: "Focus", life: "Life", ai: "AI", letters: "Letters", mail: "Contact" };
     if (state.app === "projects") {
       const project = projectById(state.item);
       return `<h1>${project ? project.title : "Projects"}</h1><div class="side-scroll list">${project ? projectDetail(project) : projectList(null)}</div>`;
@@ -296,6 +298,7 @@
     if (state.app === "focus") return `<h1>Focus</h1><div class="side-scroll">${focusInner()}</div>`;
     if (state.app === "life") return `<h1>Life</h1><div class="side-scroll">${lifeInner()}</div>`;
     if (state.app === "skills") return `<h1>Skills</h1><div class="side-scroll">${skillsInner()}</div>`;
+    if (state.app === "wallpaper") return `<h1>Wallpaper</h1><div class="side-scroll">${wallpaperInner()}</div>`;
     if (state.app === "ai") return `<h1>AI</h1><div class="side-scroll">${aiInner()}</div>`;
     if (state.app === "letters") return `<h1>Letters</h1><div class="side-scroll">${lettersInner()}</div>`;
     return `<h1>Contact</h1><div class="side-scroll"><p>I’m open to roles and to collaborations.</p>${chips([
@@ -339,6 +342,9 @@
     if (state.app === "skills") {
       return `${back}<div class="sheet-head"><h2>Skills</h2></div><div class="groups">${skillsInner()}</div>`;
     }
+    if (state.app === "wallpaper") {
+      return `${back}<div class="sheet-head"><h2>Wallpaper</h2></div><div class="groups">${wallpaperInner()}</div>`;
+    }
     if (state.app === "ai") {
       return `${back}<div class="sheet-head"><h2>AI</h2></div><div class="groups">${aiInner()}</div>`;
     }
@@ -371,6 +377,7 @@
     if (state.app === "focus") return focusInner();
     if (state.app === "life") return lifeInner();
     if (state.app === "skills") return skillsInner();
+    if (state.app === "wallpaper") return wallpaperInner();
     if (state.app === "ai") return aiInner();
     if (state.app === "letters") return lettersInner();
     return chips([
@@ -379,6 +386,24 @@
       ["GitHub", "https://github.com/DINAL11"],
       ["Letters of recommendation", "LORs.pdf"]
     ]);
+  }
+
+  function wallpaperInner() {
+    const presets = WALLS.map((item) => {
+      const on = wallMode.id === item.id ? " is-on" : "";
+      const bg = item.kind === "video"
+        ? "linear-gradient(165deg, " + item.colors[0] + "cc, " + item.colors[2] + "), radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 55%)"
+        : "linear-gradient(165deg, " + item.colors[0] + ", " + item.colors[2] + ")";
+      const note = item.note ? "<small>" + item.note + "</small>" : "";
+      return "<button type=\"button\" class=\"wall-swatch" + on + "\" data-wall=\"" + item.id + "\" style=\"background-image:" + bg + "\" aria-pressed=\"" + (on ? "true" : "false") + "\">" + item.name + note + "</button>";
+    }).join("");
+    const shots = state.photos.map((name) => {
+      const id = "photo:" + name;
+      const on = wallMode.id === id;
+      return "<button type=\"button\" class=\"wall-swatch" + (on ? " is-on" : "") + "\" data-wall=\"" + id + "\" style=\"background-image:url('gallery/" + name + "')\" aria-label=\"" + name + "\" aria-pressed=\"" + (on ? "true" : "false") + "\"></button>";
+    }).join("");
+    return `<p class="focus-lead">Choose a look for this screen. Tap a theme to apply it right away.</p>
+      <div class="wall-sheet" role="listbox" aria-label="Wallpaper themes">${presets}${shots}</div>`;
   }
 
   function focusInner() {
@@ -490,7 +515,7 @@
 
   function titles() {
     if (state.app === "projects" && state.item) { const p = projectById(state.item); if (p) return p.title; }
-    return { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", focus: "Focus", life: "Life", ai: "AI", letters: "Letters", mail: "Contact" }[state.app] || "Dinal";
+    return { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", wallpaper: "Wallpaper", focus: "Focus", life: "Life", ai: "AI", letters: "Letters", mail: "Contact" }[state.app] || "Dinal";
   }
 
   function wallHost() {
@@ -1034,9 +1059,9 @@
         screen.style.backgroundImage = "";
       }
     });
-    // On real phones / data-saver / reduced-motion, never stream the ~11MB video wallpapers.
+    // Only skip video for data-saver / reduced-motion — phones can still pick a real theme.
     const saveData = (navigator.connection && navigator.connection.saveData) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if ((isNarrowMobile() || saveData) && !wallMode.photo) {
+    if (saveData && !wallMode.photo) {
       document.body.dataset.wallKind = "canvas";
       document.body.style.setProperty("--wall-tint", "transparent");
       if (host && host.classList) { host.classList.add("is-walled"); host.classList.remove("is-photo"); host.style.backgroundImage = ""; }
@@ -1087,8 +1112,20 @@
     try { localStorage.setItem("dinal-wall", wallMode.id); } catch (err) { /* private mode */ }
     applyWallMedia();
     document.querySelectorAll("button[data-wall]").forEach((btn) => {
-      btn.classList.toggle("is-on", btn.dataset.wall === wallMode.id);
+      const on = btn.dataset.wall === wallMode.id;
+      btn.classList.toggle("is-on", on);
+      btn.setAttribute("aria-pressed", on ? "true" : "false");
     });
+    // Keep Wallpaper app / picker selection in sync after a tap.
+    if (state.app === "wallpaper") {
+      const sheet = $("sheet");
+      if (sheet && !sheet.hidden) sheet.innerHTML = sheetHTML();
+      const win = $("win");
+      if (win && !win.hidden) $("win-body").innerHTML = wallpaperInner();
+      const side = $("side");
+      if (side) side.innerHTML = sideHTML();
+      paintWalls();
+    }
   }
 
   function paintWalls() {
