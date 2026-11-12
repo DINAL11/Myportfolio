@@ -1,9 +1,18 @@
-Five still wallpapers. Old theme-loop videos are no longer used.
+Five looping wallpapers. Each still is a frame from the same clip, used when a visitor asks for less motion.
 
-Dark — original navy gradient, minimal.
-Abstract — Unsplash photo-1634017839464, Pawel Czerwinski, 3D waves. Landscape crop.
-Retro — original synthwave sun and grid.
-Matrix — original digital rain. Not a film still.
-Tech — Unsplash photo-1518770660439, Alexandre Debiève, circuit board.
+Dark — Pexels 37014189, Chandresh Uike, “Dynamic Abstract Wave Animation on Black”. 4K source.
+https://www.pexels.com/video/dynamic-abstract-wave-animation-on-black-37014189/
 
-Unsplash photos are used under the Unsplash License.
+Abstract — Pexels 28561463, Chandresh Uike, “Dynamic Futuristic Waveform Animation”. 4K source.
+https://www.pexels.com/video/dynamic-futuristic-waveform-animation-28561463/
+
+Retro — Pexels 35725829, Nicola Narracci, “Futuristic Neon Grid Landscape with Sunset”.
+https://www.pexels.com/video/futuristic-neon-grid-landscape-with-sunset-35725829/
+
+Matrix — Pexels 33503700, Nicola Narracci, “Green Digital Matrix Code Background Animation”. Original code rain, not a film still.
+https://www.pexels.com/video/green-digital-matrix-code-background-animation-33503700/
+
+Tech — Pexels 37013442, Chandresh Uike, “Futuristic Circuit Board Animation”. 4K source.
+https://www.pexels.com/video/futuristic-circuit-board-animation-37013442/
+
+Pexels clips are used under the Pexels License.

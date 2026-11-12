@@ -160,11 +160,11 @@
   ];
 
   const WALLS = [
-    { id: "dark", name: "Dark", note: "Minimal", kind: "image", src: "wallpapers/dark.jpg", tint: "rgba(0, 0, 0, 0.12)", colors: ["#121a2e", "#0c1220", "#070b14"] },
-    { id: "abstract", name: "Abstract", note: "3D", kind: "image", src: "wallpapers/abstract.jpg", tint: "rgba(4, 18, 64, 0.28)", colors: ["#1a6cff", "#0a3adf", "#0630a0"] },
-    { id: "retro", name: "Retro", note: "Synth", kind: "image", src: "wallpapers/retro.jpg", tint: "rgba(18, 4, 28, 0.22)", colors: ["#ff6a2a", "#c41a78", "#1a0630"] },
-    { id: "matrix", name: "Matrix", note: "Rain", kind: "image", src: "wallpapers/matrix.jpg", tint: "rgba(0, 6, 2, 0.08)", colors: ["#00ff66", "#043018", "#000804"] },
-    { id: "tech", name: "Tech", note: "Circuit", kind: "image", src: "wallpapers/tech.jpg", tint: "rgba(4, 10, 18, 0.24)", colors: ["#3a4a58", "#1a242e", "#0c1218"] }
+    { id: "dark", name: "Dark", note: "Minimal", kind: "video", src: "wallpapers/dark.mp4", still: "wallpapers/dark.jpg", tint: "rgba(0, 0, 0, 0.18)", colors: ["#121a2e", "#0c1220", "#070b14"] },
+    { id: "abstract", name: "Abstract", note: "3D", kind: "video", src: "wallpapers/abstract.mp4", still: "wallpapers/abstract.jpg", tint: "rgba(4, 18, 64, 0.28)", colors: ["#1a6cff", "#0a3adf", "#0630a0"] },
+    { id: "retro", name: "Retro", note: "Synth", kind: "video", src: "wallpapers/retro.mp4", still: "wallpapers/retro.jpg", tint: "rgba(18, 4, 28, 0.34)", colors: ["#ff6a2a", "#c41a78", "#1a0630"] },
+    { id: "matrix", name: "Matrix", note: "Rain", kind: "video", src: "wallpapers/matrix.mp4", still: "wallpapers/matrix.jpg", tint: "rgba(0, 6, 2, 0.12)", colors: ["#00ff66", "#043018", "#000804"] },
+    { id: "tech", name: "Tech", note: "Circuit", kind: "video", src: "wallpapers/tech.mp4", still: "wallpapers/tech.jpg", tint: "rgba(4, 10, 18, 0.28)", colors: ["#3a4a58", "#1a242e", "#0c1218"] }
   ];
   const WALL_LEGACY = {
     waves: "dark", ocean: "abstract", tropical: "abstract", summer: "retro", fall: "retro",
@@ -184,7 +184,7 @@
     expanded: {},
     photos: []
   };
-  let wallMode = { id: "dark", kind: "image" };
+  let wallMode = { id: "dark", kind: "video" };
 
   const $ = (id) => document.getElementById(id);
 
@@ -402,8 +402,9 @@
 
   function wallButton(item) {
     const on = wallMode.id === item.id;
-    const bg = item.src
-      ? "url('" + item.src + "')"
+    const thumb = item.still || (item.kind === "video" ? "" : item.src);
+    const bg = thumb
+      ? "url('" + thumb + "')"
       : "linear-gradient(165deg, " + item.colors[0] + ", " + item.colors[2] + ")";
     const note = item.note ? "<small>" + item.note + "</small>" : "";
     return "<button type=\"button\" class=\"wall-swatch" + (on ? " is-on" : "") + "\" data-wall=\"" + item.id + "\" style=\"background-image:" + bg + "\" aria-pressed=\"" + (on ? "true" : "false") + "\">" + item.name + note + "</button>";
@@ -1082,14 +1083,19 @@
         screen.style.backgroundImage = "";
       }
     });
-    // Skip looping video when the visitor asked for less motion. Still images stay.
+    // Skip looping video when the visitor asked for less motion. Show that theme's still.
     const saveData = (navigator.connection && navigator.connection.saveData) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (saveData && wallMode.kind === "video" && !wallMode.photo) {
-      document.body.dataset.wallKind = "canvas";
-      document.body.style.setProperty("--wall-tint", "transparent");
-      if (host && host.classList) { host.classList.add("is-walled"); host.classList.remove("is-photo"); host.style.backgroundImage = ""; }
+      const stillPreset = wallById(wallMode.id);
+      document.body.dataset.wallKind = "image";
+      document.body.style.setProperty("--wall-tint", stillPreset.tint || "transparent");
       video.pause(); video.removeAttribute("src"); video.load();
-      if (typeof window.__dinalResizeWall === "function") window.__dinalResizeWall();
+      if (host) {
+        if (host.classList) host.classList.add("is-walled", "is-photo");
+        host.style.backgroundImage = stillPreset.still ? "url(\"" + stillPreset.still + "\")" : "";
+      }
+      const stillField = $("field");
+      if (stillField && document.body.dataset.boot === "ready") stillField.style.opacity = "0";
       return;
     }
     if (wallMode.photo) {
