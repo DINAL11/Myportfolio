@@ -13,9 +13,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="os.css?v=6">
+  <link rel="stylesheet" href="os.css?v=7">
 </head>
 <body data-device="phone" data-boot="blue">
+  <!-- Wallpaper layers live on the page only during boot, then move into the active device screen. -->
   <video id="wall-video" class="wall-video" muted loop playsinline autoplay preload="metadata" aria-hidden="true"></video>
   <div id="wall-tint" class="wall-tint" aria-hidden="true"></div>
   <canvas id="field" aria-hidden="true"></canvas>
@@ -35,7 +36,7 @@
     <div class="stage">
       <div class="phone-layout">
         <div class="phone">
-          <div class="screen">
+          <div class="screen" id="phone-screen">
             <div class="island" aria-hidden="true"></div>
             <div class="lock" id="lock">
               <p class="lock-hi">Hi!</p>
@@ -79,7 +80,7 @@
 
       <div class="desk-host">
         <div class="laptop-frame">
-          <div class="screen">
+          <div class="screen" id="desk-screen">
               <div class="menu">
                 <div class="menu-left">
                   <button class="apple" type="button" data-home aria-label="Home">Dinal</button>
@@ -151,6 +152,6 @@
     </div>
   </main>
   <noscript><p style="padding:20px;text-align:center">This site needs JavaScript. Email <a href="mailto:dinaldholiya@gmail.com">dinaldholiya@gmail.com</a> or visit <a href="https://github.com/DINAL11">GitHub</a>.</p></noscript>
-  <script src="js/os.js?v=6"></script>
+  <script src="js/os.js?v=7"></script>
 </body>
 </html>

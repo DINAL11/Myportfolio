@@ -21,42 +21,69 @@ html, body { min-height: 100%; }
 body {
   font-family: Inter, sans-serif;
   color: var(--ink);
+  /* Site chrome only — device wallpapers never paint the page behind the phone/laptop. */
   background: #07162f;
   -webkit-font-smoothing: antialiased;
 }
 
-.wall-video {
-  position: fixed;
+.wall-video,
+.wall-tint,
+#field {
   inset: 0;
   z-index: 0;
   width: 100%;
   height: 100%;
-  object-fit: cover;
   pointer-events: none;
+}
+/* Boot / page host: full-viewport cinematic wash */
+body > .wall-video,
+body > .wall-tint,
+body > #field {
+  position: fixed;
+}
+/* Inside a device screen: wallpaper of that phone / laptop / desktop */
+.screen > .wall-video,
+.screen > .wall-tint,
+.screen > #field {
+  position: absolute;
+  border-radius: inherit;
+}
+.wall-video {
+  object-fit: cover;
   opacity: 0;
   transition: opacity 0.45s ease;
-  background: #07162f;
+  background: #0a1e3c;
 }
 body[data-wall-kind="video"] .wall-video { opacity: 1; }
 .wall-tint {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  pointer-events: none;
   opacity: 0;
   transition: opacity 0.45s ease;
   background: var(--wall-tint, rgba(6, 14, 32, 0.4));
 }
-body[data-wall-kind="video"] .wall-tint { opacity: 1; }
-#field {
-  position: fixed;
-  inset: 0;
-  z-index: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
+body[data-wall-kind="video"] .wall-tint,
+body[data-wall-kind="photo"] .wall-tint { opacity: 1; }
+#field { display: block; }
+body[data-wall-kind="video"] #field,
+body[data-wall-kind="photo"] #field { opacity: 0; }
+.screen > .wall-video,
+.screen > .wall-tint,
+.screen > #field { z-index: 0; }
+.screen > .island,
+.screen > .lock,
+.screen > .home-ui,
+.screen > .sheet,
+.screen > .dock,
+.screen > .menu,
+.screen > .desktop,
+.screen > .desk-dock {
+  position: relative;
+  z-index: 1;
 }
-body[data-wall-kind="video"] #field { opacity: 0; }
+.screen > .island { position: absolute; z-index: 6; }
+.screen > .lock { position: absolute; z-index: 4; }
+.screen > .home-ui,
+.screen > .sheet { position: absolute; z-index: 2; }
+.screen > .dock { position: absolute; z-index: 4; }
 
 button, a { font: inherit; color: inherit; }
 button { cursor: pointer; }
@@ -129,9 +156,15 @@ body[data-device="desktop"] .phone-layout { display: none; }
   border-radius: 40px;
   overflow: hidden;
   position: relative;
+  /* Fallback wash only — real wallpaper is the video/canvas/photo layers inside. */
   background:
     radial-gradient(90% 50% at 10% 0%, #3d86d6 0%, transparent 55%),
     linear-gradient(180deg, #1a4e96 0%, #0e2c58 100%);
+}
+.screen.is-walled {
+  background: #0a1e3c;
+  background-size: cover;
+  background-position: center;
 }
 
 .island {
@@ -441,6 +474,14 @@ body[data-device="desktop"] .phone-layout { display: none; }
   flex-direction: column;
   position: relative;
 }
+.laptop-frame > .screen.is-walled {
+  background-color: #0a1e3c;
+  background-image: none;
+}
+.laptop-frame > .screen.is-walled.is-photo {
+  background-size: cover;
+  background-position: center;
+}
 .laptop-deck {
   height: 16px;
   margin: 0 -10px;
@@ -499,9 +540,10 @@ body[data-device="desktop"] .phone-layout { display: none; }
   align-items: start;
   gap: 12px;
   padding: 16px 16px 12px;
-  background: linear-gradient(180deg, rgba(6, 20, 48, 0.18), rgba(6, 18, 40, 0.28));
+  /* Let the screen wallpaper show through — no solid desk wash. */
+  background: transparent;
+  overflow: hidden;
 }
-.desktop { overflow: hidden; }
 .desk-icons {
   display: grid;
   align-content: start;
@@ -999,33 +1041,28 @@ body[data-open="1"] .desk-dock .dock-about { display: flex; }
 .win-body .ai-grid { grid-template-columns: 1fr; }
 .win-body .letter-stack { max-width: 420px; }
 
-/* Desktop: the same widgets, no device frame */
-body[data-device="desktop"] {
+/* Desktop: full-page OS — no laptop bezel, no mac menu bar, wallpaper fills the viewport */
+body[data-device="desktop"],
+body[data-device="desktop"] html {
   overflow: hidden;
+  height: 100%;
+  background: #07162f;
 }
 body[data-device="desktop"] .page {
   min-height: 100vh;
+  min-height: 100dvh;
   height: 100vh;
-  padding: 10px 12px 0;
-  display: flex;
-  flex-direction: column;
-  align-items: stretch;
-  justify-content: flex-start;
-  gap: 8px;
+  height: 100dvh;
+  padding: 0;
+  display: block;
   overflow: hidden;
 }
 body[data-device="desktop"] .topbar {
-  position: relative;
-  z-index: 40;
-  flex-shrink: 0;
-}
-body[data-device="desktop"] .switcher {
-  position: static;
-  top: auto;
-  bottom: auto;
-  left: auto;
-  transform: none;
-  z-index: auto;
+  position: fixed;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 60;
 }
 body[data-device="desktop"] .switcher button {
   padding: 7px 14px;
@@ -1033,28 +1070,49 @@ body[data-device="desktop"] .switcher button {
 }
 body[data-device="desktop"] .stage,
 body[data-device="desktop"] .desk-host,
-body[data-device="desktop"] .laptop-frame {
+body[data-device="desktop"] .laptop-frame,
+body[data-device="desktop"] .screen {
+  position: absolute;
+  inset: 0;
   width: 100%;
-  flex: 1;
+  height: 100%;
   min-height: 0;
-  height: auto;
   background: none;
   padding: 0;
+  margin: 0;
   border-radius: 0;
   box-shadow: none;
 }
 body[data-device="desktop"] .laptop-deck { display: none; }
+body[data-device="desktop"] .menu { display: none; } /* apps live as icons only */
 body[data-device="desktop"] .screen {
-  width: 100%;
-  height: 100%;
+  background: #0a1e3c;
+  display: flex;
+  flex-direction: column;
+}
+body[data-device="desktop"] .desktop {
+  flex: 1;
   min-height: 0;
-  border-radius: 0;
-  background: transparent;
+  padding-top: 64px; /* room under floating Phone/Laptop/Desktop + Wallpaper controls */
+  grid-template-columns: 132px 1fr 300px;
+}
+body[data-device="desktop"] .desk-icons {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  width: 124px;
+  gap: 10px 4px;
+}
+body[data-device="desktop"] .win {
+  left: 148px;
+  right: 320px;
+  top: 64px;
 }
 body[data-device="desktop"] .desk-dock {
+  position: relative;
+  z-index: 2;
   height: 86px;
   padding-bottom: 6px;
-  background: rgba(10, 28, 56, 0.72);
+  background: rgba(10, 28, 56, 0.55);
+  backdrop-filter: blur(16px);
 }
 
 @media (max-width: 1080px) {

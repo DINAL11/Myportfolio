@@ -493,6 +493,31 @@
     return { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", focus: "Focus", life: "Life", ai: "AI", letters: "Letters", mail: "Contact" }[state.app] || "Dinal";
   }
 
+  function wallHost() {
+    // During boot the cinematic wash can fill the page; after that wallpaper belongs
+    // inside the active device screen (phone display / laptop lid / full desktop).
+    if (document.body.dataset.boot !== "ready") return document.body;
+    if (state.device === "phone") return $("phone-screen") || document.querySelector(".phone .screen");
+    return $("desk-screen") || document.querySelector(".laptop-frame > .screen");
+  }
+
+  function placeWallLayers() {
+    const host = wallHost();
+    if (!host) return;
+    const layers = [$("field"), $("wall-video"), $("wall-tint")].filter(Boolean);
+    layers.forEach((el) => {
+      if (el.parentElement !== host) host.insertBefore(el, host.firstChild);
+    });
+    document.querySelectorAll(".screen").forEach((screen) => {
+      screen.classList.toggle("is-walled", screen === host && document.body.dataset.boot === "ready");
+      if (screen !== host) {
+        screen.classList.remove("is-photo");
+        screen.style.backgroundImage = "";
+      }
+    });
+    if (typeof window.__dinalResizeWall === "function") window.__dinalResizeWall();
+  }
+
   function render() {
     const home = !state.app;
     $("home-ui").hidden = !home;
@@ -520,6 +545,7 @@
       btn.classList.toggle("is-on", on);
       if (on) btn.setAttribute("aria-current", "true"); else btn.removeAttribute("aria-current");
     });
+    placeWallLayers();
     const hash = ["#" + state.device, state.app, state.item].filter(Boolean).join("/");
     if (location.hash !== hash) history.replaceState(null, "", hash);
   }
@@ -719,14 +745,16 @@
 
     function resize() {
       const ratio = Math.min(window.devicePixelRatio || 1, 2);
-      width = window.innerWidth;
-      height = window.innerHeight;
+      const parent = canvas.parentElement;
+      width = Math.max(1, (parent && parent !== document.body ? parent.clientWidth : window.innerWidth) || window.innerWidth);
+      height = Math.max(1, (parent && parent !== document.body ? parent.clientHeight : window.innerHeight) || window.innerHeight);
       canvas.width = Math.floor(width * ratio);
       canvas.height = Math.floor(height * ratio);
-      canvas.style.width = width + "px";
-      canvas.style.height = height + "px";
+      canvas.style.width = "100%";
+      canvas.style.height = "100%";
       ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
+    window.__dinalResizeWall = resize;
 
     function robot(x, y, scale, bob) {
       ctx.save();
@@ -912,16 +940,23 @@
     if (seen || reduced) {
       reveal.waves = reveal.wavesTo = 1; reveal.robot = reveal.robotTo = 1; reveal.net = 1;
       document.body.dataset.boot = "ready";
+      placeWallLayers();
       applyWallMedia();
       return;
     }
-    const skip = () => { if (document.body.dataset.boot !== "ready") { document.body.dataset.boot = "ready"; applyWallMedia(); } };
-    document.addEventListener("pointerdown", skip, { once: false });
-    document.addEventListener("keydown", (e) => { if (e.key === "Escape" || e.key === "Enter") skip(); });
+    let cancelled = false;
     const finish = () => {
+      cancelled = true;
       document.body.dataset.boot = "ready";
+      placeWallLayers();
       applyWallMedia();
     };
+    const skip = () => {
+      if (document.body.dataset.boot === "ready" || cancelled) return;
+      finish();
+    };
+    document.addEventListener("pointerdown", skip);
+    document.addEventListener("keydown", (e) => { if (e.key === "Escape" || e.key === "Enter") skip(); });
     // Opening sequence always uses the signature waves canvas.
     document.body.dataset.wallKind = "canvas";
     const video = $("wall-video");
@@ -941,9 +976,10 @@
     let step = "blue";
     let startY = null;
     const go = (name) => {
+      if (cancelled || document.body.dataset.boot === "ready") return;
       step = name;
       document.body.dataset.boot = name;
-      if (name === "ready") applyWallMedia();
+      if (name === "ready") finish();
     };
     const later = (ms, fn) => setTimeout(fn, ms);
     later(500, () => { reveal.wavesTo = 1; });
@@ -988,25 +1024,37 @@
   function applyWallMedia() {
     const video = $("wall-video");
     if (!video) return;
-    // On phones / data-saver / reduced-motion, never stream the ~11MB video wallpapers.
+    placeWallLayers();
+    const host = wallHost();
+    // Never paint wallpaper onto the website page chrome — only the device screen.
+    document.body.style.backgroundImage = "";
+    document.querySelectorAll(".screen").forEach((screen) => {
+      if (screen !== host) {
+        screen.classList.remove("is-photo");
+        screen.style.backgroundImage = "";
+      }
+    });
+    // On real phones / data-saver / reduced-motion, never stream the ~11MB video wallpapers.
     const saveData = (navigator.connection && navigator.connection.saveData) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if ((isNarrowMobile() || saveData) && !wallMode.photo) {
       document.body.dataset.wallKind = "canvas";
       document.body.style.setProperty("--wall-tint", "transparent");
+      if (host && host.classList) { host.classList.add("is-walled"); host.classList.remove("is-photo"); host.style.backgroundImage = ""; }
       video.pause(); video.removeAttribute("src"); video.load();
+      if (typeof window.__dinalResizeWall === "function") window.__dinalResizeWall();
       return;
     }
     if (wallMode.photo) {
       document.body.dataset.wallKind = "photo";
       document.body.style.setProperty("--wall-tint", "rgba(6, 14, 32, 0.28)");
-      video.removeAttribute("src");
-      video.load();
-      document.body.style.backgroundImage = "url(\"gallery/" + wallMode.photo + "\")";
-      document.body.style.backgroundSize = "cover";
-      document.body.style.backgroundPosition = "center";
+      video.pause(); video.removeAttribute("src"); video.load();
+      if (host && host.classList) {
+        host.classList.add("is-walled", "is-photo");
+        host.style.backgroundImage = "url(\"gallery/" + wallMode.photo + "\")";
+      }
       return;
     }
-    document.body.style.backgroundImage = "";
+    if (host && host.classList) { host.classList.add("is-walled"); host.classList.remove("is-photo"); host.style.backgroundImage = ""; }
     const preset = wallById(wallMode.id);
     if (preset.kind === "video" && preset.src) {
       document.body.dataset.wallKind = "video";
@@ -1021,8 +1069,10 @@
     }
     document.body.dataset.wallKind = "canvas";
     document.body.style.setProperty("--wall-tint", "transparent");
+    video.pause();
     video.removeAttribute("src");
     video.load();
+    if (typeof window.__dinalResizeWall === "function") window.__dinalResizeWall();
   }
 
   function setWall(id) {
