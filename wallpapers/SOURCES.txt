@@ -1,2 +1,9 @@
-Theme loops compressed from free Pexels stock videos for site backgrounds.
-Ocean, Tropical, Summer, Fall, Modern, Tech.
+Five still wallpapers. Old theme-loop videos are no longer used.
+
+Dark — original navy gradient, minimal.
+Abstract — Unsplash photo-1634017839464, Pawel Czerwinski, 3D waves. Landscape crop.
+Retro — original synthwave sun and grid.
+Matrix — original digital rain. Not a film still.
+Tech — Unsplash photo-1518770660439, Alexandre Debiève, circuit board.
+
+Unsplash photos are used under the Unsplash License.

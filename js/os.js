@@ -126,7 +126,7 @@
     ["wallpaper", "Wallpaper", "#1d5cbf"]
   ];
 
-  const DESK_APPS = PHONE_APPS.concat([["life", "Life", "#1f6f9a"]]);
+  const DESK_APPS = PHONE_APPS;
 
   const ICONS = {
     projects: '<rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/>',
@@ -139,7 +139,6 @@
     wallpaper: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 14l4.5-3.5L12 14l3-2.5L21 15"/><circle cx="8" cy="9" r="1.5"/>',
     ai: '<path d="M12 3l1.3 4L17.5 8.5 13.3 9.8 12 14l-1.3-4.2L6.5 8.5 10.7 7z"/><path d="M18 14l.7 2 2 .7-2 .7-.7 2-.7-2-2-.7 2-.7z"/>',
     letters: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M4 7l8 6 8-6"/>',
-    life: '<path d="M4 16l5-6 3 3 2-2 6 5"/><circle cx="8" cy="7" r="1.4"/>',
     mail: '<rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3 7l9 7 9-7"/>'
   };
 
@@ -161,31 +160,31 @@
   ];
 
   const WALLS = [
-    { id: "waves", name: "Signature", note: "Waves + AI", kind: "canvas", colors: ["#0a5cab", "#0b3a7a", "#06172f"] },
-    { id: "ocean", name: "Ocean", note: "Aerial coast", kind: "video", src: "wallpapers/ocean.mp4", tint: "rgba(6, 20, 36, 0.42)", colors: ["#0e3a52", "#0a2438", "#061420"] },
-    { id: "tropical", name: "Tropical", note: "Island shore", kind: "video", src: "wallpapers/tropical.mp4", tint: "rgba(8, 28, 36, 0.4)", colors: ["#0f4a4a", "#0a2e38", "#061820"] },
-    { id: "summer", name: "Summer", note: "Sunlit forest", kind: "video", src: "wallpapers/summer.mp4", tint: "rgba(10, 24, 16, 0.4)", colors: ["#1a4030", "#102818", "#0a1810"] },
-    { id: "fall", name: "Fall", note: "Golden dusk", kind: "video", src: "wallpapers/fall.mp4", tint: "rgba(28, 14, 8, 0.42)", colors: ["#4a2814", "#2a160c", "#140a08"] },
-    { id: "modern", name: "Modern", note: "Cinematic coast", kind: "video", src: "wallpapers/modern.mp4", tint: "rgba(18, 12, 10, 0.4)", colors: ["#2a2018", "#18120e", "#0c0806"] },
-    { id: "tech", name: "Tech", note: "Data globe", kind: "video", src: "wallpapers/tech.mp4", tint: "rgba(4, 18, 24, 0.48)", colors: ["#062428", "#041418", "#020c10"] }
+    { id: "dark", name: "Dark", note: "Minimal", kind: "image", src: "wallpapers/dark.jpg", tint: "rgba(0, 0, 0, 0.12)", colors: ["#121a2e", "#0c1220", "#070b14"] },
+    { id: "abstract", name: "Abstract", note: "3D", kind: "image", src: "wallpapers/abstract.jpg", tint: "rgba(4, 18, 64, 0.28)", colors: ["#1a6cff", "#0a3adf", "#0630a0"] },
+    { id: "retro", name: "Retro", note: "Synth", kind: "image", src: "wallpapers/retro.jpg", tint: "rgba(18, 4, 28, 0.22)", colors: ["#ff6a2a", "#c41a78", "#1a0630"] },
+    { id: "matrix", name: "Matrix", note: "Rain", kind: "image", src: "wallpapers/matrix.jpg", tint: "rgba(0, 6, 2, 0.08)", colors: ["#00ff66", "#043018", "#000804"] },
+    { id: "tech", name: "Tech", note: "Circuit", kind: "image", src: "wallpapers/tech.jpg", tint: "rgba(4, 10, 18, 0.24)", colors: ["#3a4a58", "#1a242e", "#0c1218"] }
   ];
   const WALL_LEGACY = {
-    halloween: "fall", christmas: "modern", potter: "tech", vibe: "tropical", neon: "tech",
-    night: "modern", aurora: "summer", jan: "tech", feb: "modern", mar: "ocean",
-    apr: "summer", may: "summer", jun: "tropical", jul: "tropical", aug: "fall",
-    sep: "fall", oct: "fall", nov: "fall", dec: "modern", grid: "waves", ink: "waves"
+    waves: "dark", ocean: "abstract", tropical: "abstract", summer: "retro", fall: "retro",
+    modern: "dark", halloween: "retro", christmas: "dark", potter: "tech", vibe: "abstract",
+    neon: "matrix", night: "dark", aurora: "abstract", grid: "matrix", ink: "dark",
+    jan: "tech", feb: "dark", mar: "abstract", apr: "retro", may: "retro", jun: "abstract",
+    jul: "abstract", aug: "retro", sep: "retro", oct: "retro", nov: "retro", dec: "dark"
   };
 
-  const VALID_APPS = ["projects", "research", "extras", "credentials", "skills", "focus", "ai", "gallery", "wallpaper", "life", "letters", "mail"];
+  const VALID_APPS = ["projects", "research", "extras", "credentials", "skills", "focus", "ai", "gallery", "wallpaper", "letters", "mail"];
   const isNarrowMobile = () => window.matchMedia("(max-width: 760px)").matches;
   const state = {
     device: "phone",
     app: null,
     item: null,
     group: "All",
+    expanded: {},
     photos: []
   };
-  let wallMode = { id: "waves", kind: "canvas" };
+  let wallMode = { id: "dark", kind: "image" };
 
   const $ = (id) => document.getElementById(id);
 
@@ -215,7 +214,7 @@
   function appHTML(entry, className) {
     const [id, label, color] = entry;
     return `<button class="${className}" type="button" data-open="${id}">
-      <span class="ico" style="background:${color}">${svg(id === "life" ? "life" : id)}</span>
+      <span class="ico" style="background:${color}">${svg(id)}</span>
       <span>${label}</span>
     </button>`;
   }
@@ -224,16 +223,35 @@
     return `<div class="chips">${links.map(([label, href]) => blank(href, label)).join("")}</div>`;
   }
 
+  const PROJECT_PREVIEW = 2;
+
+  function groupsInView() {
+    return state.group === "All" ? GROUPS : GROUPS.filter((g) => g === state.group);
+  }
+
+  function projectsInGroup(group) {
+    const items = PROJECTS.filter((p) => p.group === group);
+    const open = !!state.expanded[group];
+    return { items, shown: open ? items : items.slice(0, PROJECT_PREVIEW), open };
+  }
+
+  function moreButton(group, open, total) {
+    if (total <= PROJECT_PREVIEW) return "";
+    const label = open ? "Show less" : "Show more";
+    const name = group.replace(/&/g, "&amp;");
+    return `<button class="show-more" type="button" data-more="${name}" aria-expanded="${open ? "true" : "false"}">${label}</button>`;
+  }
+
   function projectList(activeId) {
-    const groups = state.group === "All" ? GROUPS : GROUPS.filter((g) => g === state.group);
-    return groups.map((group) => {
-      const items = PROJECTS.filter((p) => p.group === group).map((p) => {
+    return groupsInView().map((group) => {
+      const { items, shown, open } = projectsInGroup(group);
+      const rows = shown.map((p) => {
         return `<button class="item${p.id === activeId ? " is-on" : ""}" type="button" data-open="projects" data-item="${p.id}">
           <strong>${p.title}</strong><small>${p.summary}</small>
           <span class="tags">${p.tags.map((t) => `<i>${t}</i>`).join("")}</span>
         </button>`;
       }).join("");
-      return `<div class="label">${group}</div>${items}`;
+      return `<div class="label">${group}</div>${rows}${moreButton(group, open, items.length)}`;
     }).join("");
   }
 
@@ -275,7 +293,7 @@
 
   function sideHTML() {
     if (!state.app) return homeSide();
-    const titles = { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", wallpaper: "Wallpaper", focus: "Focus", life: "Life", ai: "AI", letters: "Letters", mail: "Contact" };
+    const titles = { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", wallpaper: "Wallpaper", focus: "Focus", ai: "AI", letters: "Letters", mail: "Contact" };
     if (state.app === "projects") {
       const project = projectById(state.item);
       return `<h1>${project ? project.title : "Projects"}</h1><div class="side-scroll list">${project ? projectDetail(project) : projectList(null)}</div>`;
@@ -295,7 +313,6 @@
     if (state.app === "credentials") return `<h1>Credentials</h1><div class="side-scroll">${credentialsInner()}</div>`;
     if (state.app === "gallery") return `<h1>Gallery</h1><div class="side-scroll">${galleryInner()}</div>`;
     if (state.app === "focus") return `<h1>Focus</h1><div class="side-scroll">${focusInner()}</div>`;
-    if (state.app === "life") return `<h1>Life</h1><div class="side-scroll">${lifeInner()}</div>`;
     if (state.app === "skills") return `<h1>Skills</h1><div class="side-scroll">${skillsInner()}</div>`;
     if (state.app === "wallpaper") return `<h1>Wallpaper</h1><div class="side-scroll">${wallpaperInner()}</div>`;
     if (state.app === "ai") return `<h1>AI</h1><div class="side-scroll">${aiInner()}</div>`;
@@ -316,7 +333,7 @@
       if (project) {
         return `${back}<div class="sheet-head"><h2>${project.title}</h2></div><div class="groups">${projectHero(project)}</div>`;
       }
-      return `${back}<div class="sheet-head"><h2>Projects</h2></div><div class="groups"><div class="chips">${filters}</div><div class="project-grid">${projectCards()}</div></div>`;
+      return `${back}<div class="sheet-head"><h2>Projects</h2></div><div class="groups"><div class="chips">${filters}</div>${projectCards()}</div>`;
     }
     if (state.app === "research") {
       return `${back}<div class="sheet-head"><h2>Research</h2></div>
@@ -334,9 +351,6 @@
     }
     if (state.app === "focus") {
       return `${back}<div class="sheet-head"><h2>Focus</h2></div><div class="groups">${focusInner()}</div>`;
-    }
-    if (state.app === "life") {
-      return `${back}<div class="sheet-head"><h2>Life</h2></div><div class="groups">${lifeInner()}</div>`;
     }
     if (state.app === "skills") {
       return `${back}<div class="sheet-head"><h2>Skills</h2></div><div class="groups">${skillsInner()}</div>`;
@@ -365,7 +379,7 @@
       const project = projectById(state.item);
       if (project) return projectHero(project);
       const filters = ["All"].concat(GROUPS).map((group) => `<button class="filter${state.group === group ? " is-on" : ""}" type="button" data-group="${group}">${group}</button>`).join("");
-      return `<div class="chips">${filters}</div><div class="project-grid">${projectCards()}</div>`;
+      return `<div class="chips">${filters}</div>${projectCards()}`;
     }
     if (state.app === "research") {
       return `<div class="stack" style="padding:0">${papersHTML()}</div>`;
@@ -374,7 +388,6 @@
     if (state.app === "credentials") return credentialsInner();
     if (state.app === "gallery") return galleryInner();
     if (state.app === "focus") return focusInner();
-    if (state.app === "life") return lifeInner();
     if (state.app === "skills") return skillsInner();
     if (state.app === "wallpaper") return wallpaperInner();
     if (state.app === "ai") return aiInner();
@@ -387,15 +400,17 @@
     ]);
   }
 
+  function wallButton(item) {
+    const on = wallMode.id === item.id;
+    const bg = item.src
+      ? "url('" + item.src + "')"
+      : "linear-gradient(165deg, " + item.colors[0] + ", " + item.colors[2] + ")";
+    const note = item.note ? "<small>" + item.note + "</small>" : "";
+    return "<button type=\"button\" class=\"wall-swatch" + (on ? " is-on" : "") + "\" data-wall=\"" + item.id + "\" style=\"background-image:" + bg + "\" aria-pressed=\"" + (on ? "true" : "false") + "\">" + item.name + note + "</button>";
+  }
+
   function wallpaperInner() {
-    const presets = WALLS.map((item) => {
-      const on = wallMode.id === item.id ? " is-on" : "";
-      const bg = item.kind === "video"
-        ? "linear-gradient(165deg, " + item.colors[0] + "cc, " + item.colors[2] + "), radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 55%)"
-        : "linear-gradient(165deg, " + item.colors[0] + ", " + item.colors[2] + ")";
-      const note = item.note ? "<small>" + item.note + "</small>" : "";
-      return "<button type=\"button\" class=\"wall-swatch" + on + "\" data-wall=\"" + item.id + "\" style=\"background-image:" + bg + "\" aria-pressed=\"" + (on ? "true" : "false") + "\">" + item.name + note + "</button>";
-    }).join("");
+    const presets = WALLS.map(wallButton).join("");
     const shots = state.photos.map((name) => {
       const id = "photo:" + name;
       const on = wallMode.id === id;
@@ -416,17 +431,6 @@
       ${chips([["Case study", "project18.html"], ["GitHub", "https://github.com/DINAL11/focus-dashboard"]])}`;
   }
 
-  function lifeInner() {
-    return `<div class="life-stage">
-      <div class="life-traits">
-        <article><strong>Competitive</strong><p>I treat the work like a sport. I want the top of the board.</p></article>
-        <article><strong>Organized</strong><p>A plan, a system, and a place for every project.</p></article>
-        <article><strong>Planned</strong><p>I stay ready in a field that does not slow down.</p></article>
-      </div>
-      <p class="life-line">I am competitive, very organized, and planned. I keep myself at the top of this fast-moving tech industry.</p>
-    </div>`;
-  }
-
   function credentialsInner() {
     const conf = CONFERENCES.map((item) => `<a class="cred" data-blank href="${item.href}"><small>Conference</small><strong>${item.title}</strong><span>${item.text}</span></a>`).join("");
     const certs = CERTS.map(([label, href]) => `<a class="cred" data-blank href="${href}"><small>Certificate</small><strong>${label}</strong></a>`).join("");
@@ -445,13 +449,16 @@
   }
 
   function projectCards() {
-    const list = state.group === "All" ? PROJECTS : PROJECTS.filter((p) => p.group === state.group);
-    return list.map((p) => `<button class="project-card" type="button" data-open="projects" data-item="${p.id}">
-      <small>${p.group}</small>
-      <strong>${p.title}</strong>
-      <span>${p.summary}</span>
-      <em>${p.tags.join(" · ")}</em>
-    </button>`).join("");
+    return groupsInView().map((group) => {
+      const { items, shown, open } = projectsInGroup(group);
+      const cards = shown.map((p) => `<button class="project-card" type="button" data-open="projects" data-item="${p.id}">
+        <small>${p.group}</small>
+        <strong>${p.title}</strong>
+        <span>${p.summary}</span>
+        <em>${p.tags.join(" · ")}</em>
+      </button>`).join("");
+      return `<section class="project-group"><h3 class="group-label">${group}</h3><div class="project-grid">${cards}</div>${moreButton(group, open, items.length)}</section>`;
+    }).join("");
   }
 
   function projectHero(project) {
@@ -515,7 +522,7 @@
 
   function titles() {
     if (state.app === "projects" && state.item) { const p = projectById(state.item); if (p) return p.title; }
-    return { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", wallpaper: "Wallpaper", focus: "Focus", life: "Life", ai: "AI", letters: "Letters", mail: "Contact" }[state.app] || "Dinal";
+    return { projects: "Projects", research: "Research", extras: "Extras", credentials: "Credentials", skills: "Skills", gallery: "Gallery", wallpaper: "Wallpaper", focus: "Focus", ai: "AI", letters: "Letters", mail: "Contact" }[state.app] || "Dinal";
   }
 
   function wallHost() {
@@ -557,8 +564,9 @@
       $("win-body").innerHTML = windowHTML();
     }
     document.body.dataset.device = state.device;
+    applyWallMedia();
     document.body.dataset.open = state.app ? "1" : "0";
-    win.classList.toggle("is-fit", state.app === "life" || state.app === "letters" || state.app === "mail" || (state.app === "projects" && !!state.item));
+    win.classList.toggle("is-fit", state.app === "letters" || state.app === "mail" || (state.app === "projects" && !!state.item));
     document.querySelectorAll("[data-device-set]").forEach((btn) => {
       const on = btn.dataset.deviceSet === state.device;
       btn.classList.toggle("is-on", on);
@@ -584,7 +592,10 @@
     win.style.left = ""; win.style.top = "";
     if (app === "projects" && item) {
       const project = projectById(item);
-      if (project) state.group = project.group;
+      if (project) {
+        state.group = project.group;
+        state.expanded[project.group] = true;
+      }
     }
     render();
   }
@@ -593,6 +604,7 @@
     state.app = null;
     state.item = null;
     state.group = "All";
+    state.expanded = {};
     $("win").classList.remove("is-max");
     render();
   }
@@ -698,6 +710,13 @@
       render();
       return;
     }
+    const moreBtn = event.target.closest("[data-more]");
+    if (moreBtn) {
+      const group = moreBtn.dataset.more;
+      state.expanded[group] = !state.expanded[group];
+      render();
+      return;
+    }
     const groupBtn = event.target.closest("[data-group]");
     if (groupBtn) {
       state.group = groupBtn.dataset.group;
@@ -707,7 +726,7 @@
     }
     // Ignore clicks on non-interactive content inside an open app window/sheet.
     if (state.app && event.target.closest("#win-body, .sheet, .ai-panel, .ai-tools, .ai-grid, .skill-tech, .skill-soft")) {
-      const intentional = event.target.closest("a, button, [data-open], [data-blank], [data-back], [data-clear-item], [data-group]");
+      const intentional = event.target.closest("a, button, [data-open], [data-blank], [data-back], [data-clear-item], [data-group], [data-more]");
       if (!intentional) return;
     }
     const opener = event.target.closest("button[data-open], a[data-open]");
@@ -745,7 +764,11 @@
   if (parts[1] && VALID_APPS.includes(parts[1])) state.app = parts[1];
   if (parts[2]) state.item = parts[2];
   // Validate deep links so a bad/stale hash cannot crash or open a phantom app.
-  if (state.app === "projects" && state.item && !projectById(state.item)) state.item = null;
+  if (state.app === "projects" && state.item) {
+    const project = projectById(state.item);
+    if (!project) state.item = null;
+    else state.expanded[project.group] = true;
+  }
   if (state.app === "research" && state.item && !PAPERS.find((p) => p.id === state.item)) state.item = null;
   if (state.app === "extras" && state.item && !EXTRAS.find((p) => p.id === state.item)) state.item = null;
   window.addEventListener("resize", () => {
@@ -912,7 +935,7 @@
 
     function draw() {
       const booting = document.body.dataset.boot !== "ready";
-      if (!booting && (wallMode.kind === "video" || wallMode.photo || document.body.dataset.wallKind === "video" || document.body.dataset.wallKind === "photo")) {
+      if (!booting && (wallMode.kind === "video" || wallMode.kind === "image" || wallMode.photo || document.body.dataset.wallKind === "video" || document.body.dataset.wallKind === "photo" || document.body.dataset.wallKind === "image")) {
         canvas.style.opacity = "0";
         return;
       }
@@ -1059,9 +1082,9 @@
         screen.style.backgroundImage = "";
       }
     });
-    // Only skip video for data-saver / reduced-motion — phones can still pick a real theme.
+    // Skip looping video when the visitor asked for less motion. Still images stay.
     const saveData = (navigator.connection && navigator.connection.saveData) || window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (saveData && !wallMode.photo) {
+    if (saveData && wallMode.kind === "video" && !wallMode.photo) {
       document.body.dataset.wallKind = "canvas";
       document.body.style.setProperty("--wall-tint", "transparent");
       if (host && host.classList) { host.classList.add("is-walled"); host.classList.remove("is-photo"); host.style.backgroundImage = ""; }
@@ -1077,10 +1100,26 @@
         host.classList.add("is-walled", "is-photo");
         host.style.backgroundImage = "url(\"gallery/" + wallMode.photo + "\")";
       }
+      const photoField = $("field");
+      if (photoField && document.body.dataset.boot === "ready") photoField.style.opacity = "0";
       return;
     }
     if (host && host.classList) { host.classList.add("is-walled"); host.classList.remove("is-photo"); host.style.backgroundImage = ""; }
     const preset = wallById(wallMode.id);
+    if (preset.kind === "image" && preset.src) {
+      document.body.dataset.wallKind = "image";
+      document.body.style.setProperty("--wall-tint", preset.tint || "transparent");
+      video.pause();
+      video.removeAttribute("src");
+      video.load();
+      if (host) {
+        if (host.classList) host.classList.add("is-walled", "is-photo");
+        host.style.backgroundImage = "url(\"" + preset.src + "\")";
+      }
+      const field = $("field");
+      if (field && document.body.dataset.boot === "ready") field.style.opacity = "0";
+      return;
+    }
     if (preset.kind === "video" && preset.src) {
       document.body.dataset.wallKind = "video";
       document.body.style.setProperty("--wall-tint", preset.tint || "rgba(6, 14, 32, 0.4)");
@@ -1090,6 +1129,8 @@
       }
       const play = video.play();
       if (play && play.catch) play.catch(() => { /* autoplay blocked */ });
+      const videoField = $("field");
+      if (videoField && document.body.dataset.boot === "ready") videoField.style.opacity = "0";
       return;
     }
     document.body.dataset.wallKind = "canvas";
@@ -1131,14 +1172,7 @@
   function paintWalls() {
     const picker = $("wall-picker");
     if (!picker) return;
-    const presets = WALLS.map((item) => {
-      const on = wallMode.id === item.id ? " is-on" : "";
-      const bg = item.kind === "video"
-        ? "linear-gradient(165deg, " + item.colors[0] + "cc, " + item.colors[2] + "), radial-gradient(circle at 30% 20%, rgba(255,255,255,0.18), transparent 55%)"
-        : "linear-gradient(165deg, " + item.colors[0] + ", " + item.colors[2] + ")";
-      const note = item.note ? "<small>" + item.note + "</small>" : "";
-      return "<button type=\"button\" class=\"wall-swatch" + on + "\" data-wall=\"" + item.id + "\" style=\"background-image:" + bg + "\">" + item.name + note + "</button>";
-    }).join("");
+    const presets = WALLS.map(wallButton).join("");
     const shots = state.photos.map((name) => {
       const id = "photo:" + name;
       return "<button type=\"button\" class=\"wall-swatch" + (wallMode.id === id ? " is-on" : "") + "\" data-wall=\"" + id + "\" style=\"background-image:url('gallery/" + name + "')\" aria-label=\"" + name + "\"></button>";
@@ -1151,9 +1185,9 @@
   try {
     const savedWall = localStorage.getItem("dinal-wall");
     if (savedWall) setWall(savedWall);
-    else setWall("waves");
+    else setWall("dark");
   } catch (err) {
-    setWall("waves");
+    setWall("dark");
   }
   fetch("gallery/manifest.json").then((res) => res.json()).then((data) => {
     state.photos = Array.isArray(data.images) ? data.images : [];

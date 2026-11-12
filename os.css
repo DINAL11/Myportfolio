@@ -61,10 +61,12 @@ body[data-wall-kind="video"] .wall-video { opacity: 1; }
   background: var(--wall-tint, rgba(6, 14, 32, 0.4));
 }
 body[data-wall-kind="video"] .wall-tint,
-body[data-wall-kind="photo"] .wall-tint { opacity: 1; }
+body[data-wall-kind="photo"] .wall-tint,
+body[data-wall-kind="image"] .wall-tint { opacity: 1; }
 #field { display: block; }
 body[data-wall-kind="video"] #field,
-body[data-wall-kind="photo"] #field { opacity: 0; }
+body[data-wall-kind="photo"] #field,
+body[data-wall-kind="image"] #field { opacity: 0; }
 .screen > .wall-video,
 .screen > .wall-tint,
 .screen > #field { z-index: 0; }
@@ -638,6 +640,31 @@ body[data-open="1"] .desk-dock .dock-about { display: flex; }
 }
 .win.is-fit { bottom: auto; height: auto; max-height: calc(100% - 24px); }
 .win[hidden] { display: none; }
+.project-group { display: grid; gap: 8px; }
+.project-group + .project-group { margin-top: 16px; }
+.group-label {
+  margin: 2px 2px 0;
+  font-size: 11px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  color: var(--link);
+  font-weight: 700;
+}
+.sheet .group-label { color: #9ec5f5; }
+.show-more {
+  justify-self: start;
+  border: 0;
+  background: none;
+  color: var(--link);
+  font: inherit;
+  font-size: 13px;
+  font-weight: 650;
+  padding: 2px 2px 4px;
+  cursor: pointer;
+}
+.side .show-more,
+.sheet .show-more { color: #d7e8ff; }
+.show-more:hover { text-decoration: underline; }
 .project-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(210px, 1fr)); gap: 10px; }
 .project-card {
   display: flex;
@@ -685,22 +712,6 @@ body[data-open="1"] .desk-dock .dock-about { display: flex; }
 .sheet .ai-grid p {
   color: #d7e6f8;
 }
-.sheet .life-traits p { color: #e4eefb; }
-.sheet .life-line { color: #f3f7fd; }
-.life-stage { display: grid; gap: 16px; }
-.life-traits { display: grid; gap: 10px; }
-.win-body .life-traits { grid-template-columns: repeat(3, 1fr); }
-.life-traits article {
-  border-radius: 18px;
-  padding: 16px 14px 14px;
-  background: linear-gradient(165deg, #1a4e96, #16386a);
-  color: #fff;
-  min-height: 112px;
-}
-.life-traits strong { display: block; font-size: 18px; letter-spacing: -0.3px; }
-.life-traits p { margin: 8px 0 0; color: #d7e6f8; font-size: 13px; line-height: 1.4; }
-.life-line { margin: 0; font-size: 18px; line-height: 1.4; font-weight: 560; color: var(--window-ink); }
-.sheet .life-line, .side .life-line { color: #f3f7fd; }
 .cred-grid { display: grid; gap: 10px; }
 .win-body .cred-grid { grid-template-columns: 1fr 1fr; }
 .cred {
@@ -915,13 +926,6 @@ body[data-open="1"] .desk-dock .dock-about { display: flex; }
 .focus-grid strong, .ai-grid strong { display: block; margin-top: 4px; font-size: 16px; }
 .focus-grid p, .ai-grid p { margin: 6px 0 0; font-size: 13px; line-height: 1.4; }
 .focus-note { margin-top: 12px; font-size: 13px; line-height: 1.45; }
-.life-card p {
-  font-size: 26px;
-  line-height: 1.3;
-  font-weight: 560;
-  letter-spacing: -0.4px;
-  margin: 0;
-}
 .letter-stack { position: relative; height: 176px; margin: 6px 0 8px; }
 .letter {
   position: absolute;
@@ -1051,7 +1055,6 @@ body[data-open="1"] .desk-dock .dock-about { display: flex; }
 .sheet .ai-tools { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 .win-body .focus-grid article, .win-body .ai-grid article { background: #e7f0fb; color: var(--window-ink); }
 .win-body .focus-grid p, .win-body .ai-grid p, .win-body .focus-note, .win-body .ai-lead, .win-body .focus-lead, .win-body .ai-copy { color: var(--window-muted); }
-.win-body .life-card p { color: var(--window-ink); }
 .win-body .ai-credit { color: var(--window-ink); }
 .win-body .focus-grid { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
 .win-body .ai-grid { grid-template-columns: 1fr; }
@@ -1102,9 +1105,13 @@ body[data-device="desktop"] .screen {
 body[data-device="desktop"] .laptop-deck { display: none; }
 body[data-device="desktop"] .menu { display: none; } /* apps live as icons only */
 body[data-device="desktop"] .screen {
-  background: #0a1e3c;
+  background-color: #0a1e3c;
   display: flex;
   flex-direction: column;
+}
+body[data-device="desktop"] .screen.is-photo {
+  background-size: cover;
+  background-position: center;
 }
 body[data-device="desktop"] .desktop {
   flex: 1;
@@ -1390,7 +1397,6 @@ button, a { -webkit-tap-highlight-color: transparent; touch-action: manipulation
   .sheet-head h2 { font-size: 24px; }
   .groups, .stack { padding-bottom: 24px; }
   .ai-tools { grid-template-columns: repeat(2, minmax(0, 1fr)) !important; }
-  .win-body .life-traits, .life-traits { grid-template-columns: 1fr; }
   .lock { padding-top: calc(48px + env(safe-area-inset-top)); }
 }
 
